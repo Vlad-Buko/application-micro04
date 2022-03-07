@@ -3,11 +3,14 @@ package com.app.ua.controller;
 import com.app.ua.entity.TeamEntity;
 import com.app.ua.exception.TeamAlreadyExistException;
 import com.app.ua.exception.TeamNotFoundException;
+import com.app.ua.model.Team;
 import com.app.ua.repository.TeamRepository;
 import com.app.ua.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Author Vladislav Domaniewski 04
@@ -40,6 +43,11 @@ public class TeamController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("It's error ! %(");
         }
+    }
+
+    @GetMapping("/findAll")
+    public List<Team> findAllTeam () {
+        return teamService.findAll();
     }
 
     @DeleteMapping("/{id}")

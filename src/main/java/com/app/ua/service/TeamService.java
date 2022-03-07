@@ -3,10 +3,14 @@ package com.app.ua.service;
 import com.app.ua.entity.TeamEntity;
 import com.app.ua.exception.TeamAlreadyExistException;
 import com.app.ua.exception.TeamNotFoundException;
+import com.app.ua.model.Student;
 import com.app.ua.model.Team;
 import com.app.ua.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Author Vladislav Domaniewski 04
@@ -30,6 +34,13 @@ public class TeamService {
             throw new TeamNotFoundException("Команда не найдена!");
         }
         return Team.toModel(team);
+    }
+
+    public List<Team> findAll() {
+        return teamRepos.findAll()
+                .stream()
+                .map(Team::toModel)
+                .collect(Collectors.toList());
     }
 
     public Integer delete(Integer id) {

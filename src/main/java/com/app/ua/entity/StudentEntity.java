@@ -26,7 +26,7 @@ public class StudentEntity {
     private String lastName;
 
     @ManyToOne
-    @JoinColumn(name = "student_id")
+    @JoinColumn(name = "team_id")
     private TeamEntity team;
 
 }

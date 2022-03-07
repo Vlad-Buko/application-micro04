@@ -1,23 +1,29 @@
 package com.app.ua.controller;
 
 import com.app.ua.entity.StudentEntity;
-import com.app.ua.entity.TeamEntity;
+import com.app.ua.model.Student;
 import com.app.ua.service.StudentService;
+import lombok.AllArgsConstructor;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+@Log
 @RestController
 @RequestMapping("/students")
+@AllArgsConstructor
 public class StudentController {
     @Autowired
     private StudentService studentService;
 
     @PostMapping
     public ResponseEntity createStudent(@RequestBody StudentEntity student,
-                                        @RequestParam Integer studentId) {
+                                        @RequestParam Integer teamId) {
         try {
-            return ResponseEntity.ok(studentService.createStudent(student, studentId));
+            return ResponseEntity.ok(studentService.createStudent(student, teamId));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");
         }
@@ -30,5 +36,11 @@ public class StudentController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");
         }
+    }
+
+    @GetMapping("/findAll")
+    public List<Student> findAllStudents() {
+        log.info("Ok");
+        return studentService.findAll();
     }
 }

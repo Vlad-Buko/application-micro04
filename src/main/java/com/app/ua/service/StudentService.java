@@ -2,10 +2,14 @@ package com.app.ua.service;
 
 import com.app.ua.entity.StudentEntity;
 import com.app.ua.entity.TeamEntity;
+import com.app.ua.model.Student;
 import com.app.ua.repository.StudentRepository;
 import com.app.ua.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
@@ -14,14 +18,21 @@ public class StudentService {
     @Autowired
     private TeamRepository teamRepos;
 
-    public StudentEntity createStudent(StudentEntity student, Integer teamId) {
+    public Student createStudent(StudentEntity student, Integer teamId) {
         TeamEntity team = teamRepos.findById(teamId).get();
         student.setTeam(team);
-        return studentRepos.save(student);
+        return Student.toModel(studentRepos.save(student));
     }
 
     public StudentEntity complete(Integer id) {
         StudentEntity student = studentRepos.findById(id).get();
         return studentRepos.save(student);
+    }
+
+    public List<Student> findAll() {
+        return studentRepos.findAll()
+                .stream()
+                .map(Student::toModel)
+                .collect(Collectors.toList());
     }
 }
