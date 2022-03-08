@@ -40,7 +40,7 @@ public class StudentController {
 
     @GetMapping("/findAll")
     public List<Student> findAllStudents() {
-        log.info("Ok");
+        log.info("Ok students");
         return studentService.findAll();
     }
 }

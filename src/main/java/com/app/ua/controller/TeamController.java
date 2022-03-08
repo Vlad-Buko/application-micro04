@@ -6,6 +6,7 @@ import com.app.ua.exception.TeamNotFoundException;
 import com.app.ua.model.Team;
 import com.app.ua.repository.TeamRepository;
 import com.app.ua.service.TeamService;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/teams")
+@Log
 public class TeamController {
     @Autowired
     private TeamService teamService;
@@ -47,6 +49,7 @@ public class TeamController {
 
     @GetMapping("/findAll")
     public List<Team> findAllTeam () {
+        log.info("Ok teams");
         return teamService.findAll();
     }
 
