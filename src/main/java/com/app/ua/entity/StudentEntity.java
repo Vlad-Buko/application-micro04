@@ -29,4 +29,7 @@ public class StudentEntity {
     @JoinColumn(name = "team_id")
     private TeamEntity team;
 
+    @Column(name = "team_id", insertable = false, updatable = false)
+    private Integer teamId;
+
 }
