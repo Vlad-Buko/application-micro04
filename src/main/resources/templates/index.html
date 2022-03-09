@@ -2,45 +2,112 @@
 <html lang="en">
 
 <table id="table"></table>
+
+
 <head>
 
     <meta charset="UTF-8">
     <title>ApplicationForStudentAssessment</title>
 
     <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+        * {box-sizing: border-box;}
+
+
+        .form-popup {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            right: 15px;
+            border: 3px solid #f1f1f1;
+            z-index: 9;
+
+        }
+
+        .form-container {
+            max-width: 300px;
+            padding: 10px;
+            background-color: white;
+
+        }
+
+        .form-container input[type=text], .form-container input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        .form-container input[type=text]:focus, .form-container input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        .form-container .btn {
+            background-color: #62f303;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom:10px;
+            opacity: 0.8;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .form-container .cancel {
+            background-color: #ff4498;
+        }
+
+        .form-container .btn:hover, .open-button:hover {
+            opacity: 1;
+        }
+
         table {
             font-family: arial, sans-serif;
             border-collapse: collapse;
             width: 60%;
         }
         td, th {
-            border: 1px solid #25199a;
+            border: 1px solid #73e34f;
             text-align: left;
             padding: 8px;
         }
 
         tr:nth-child(even) {
-            background-color: #7070cc;
+            background-color: #70cc78;
         }
     </style>
 </head>
 <body>
 
+<div class="form-popup" id="myForm">
+    <form action="#" class="form-container">
+        <h1>Add student</h1>
 
-<form action="#">
-    <input id="student_name" placeholder="Your name!">
-    <button onclick="createStudent()"> Add Student!</button>
-</form>
+        <label for="name"><b>Name</b></label>
+        <input id="student_name" type="text" placeholder="Имя студента" name="name" required>
+
+        <label for="email"><b>Last name</b></label>
+        <input id="student_lastName" type="text" placeholder="Фамилия студента" name="email" required>
+
+        <button onclick="createStudent()" class="btn">Added</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
+</div>
 
 <script>
     function createStudent() {
+
         var studentName = document.getElementById("student_name").value;
         var studentLastName = document.getElementById("student_lastName").value;
 
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("POST", "http://localhost:8080/students/save");
         xmlhttp.setRequestHeader("Content-Type", "application/json");
-        xmlhttp.send(JSON.stringify({name: studentName, lastName: studentLastName}));
+        xmlhttp.send(JSON.stringify({name: studentName, lastName: studentLastName, teamId: 1}));
 
         loadStudents();
     }
@@ -57,7 +124,9 @@
                 console.log(team);
                 html = html + '<tr>' +
                     '           <td>' + team.id + '</td>\n' +
-                    '           <td>' + team.nameTeam + '</td>\n';
+                    '           <td>' + team.nameTeam + '</td>\n' +
+                    '           <td><button onclick="openForm()" >ADD STUDENT</button></td>';
+
                 for (var k = 0; k < students.length; k++) {
                     var student = students[k];
                     console.log(student);
@@ -88,6 +157,20 @@
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST", "http://localhost:8080/students/upperBall/" + studentId, true);
         xhttp.send();
+    }
+
+    function openForm() {
+        document.getElementById("myForm").style.display = "block";
+
+        var studentName = document.getElementById("student_name").value;
+        var studentLastName = document.getElementById("student_lastName").value;
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("POST", "http://localhost:8080/students/save"  )
+    }
+
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
     }
 
     function createTable(html, idTea, idStud) {

@@ -3,6 +3,10 @@ package com.app.ua.model;
 import com.app.ua.entity.TeamEntity;
 import lombok.Data;
 
+/**
+ * Author Vladislav Domaniewski 04
+ */
+
 @Data
 public class Team {
     private Integer id;

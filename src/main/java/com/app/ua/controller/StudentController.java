@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Author Vladislav Domaniewski 04
+ */
+
 @Log
 @RestController
 @RequestMapping("/students")
@@ -19,9 +23,9 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @PostMapping
+    @PostMapping()
     public ResponseEntity createStudent(@RequestBody StudentEntity student,
-                                        @RequestParam Integer teamId) {
+                                       @RequestParam  Integer teamId) {
         try {
             return ResponseEntity.ok(studentService.createStudent(student, teamId));
         } catch (Exception e) {
