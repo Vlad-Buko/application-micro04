@@ -5,14 +5,12 @@
 
 
 <head>
-
     <meta charset="UTF-8">
     <title>ApplicationForStudentAssessment</title>
 
     <style>
         body {font-family: Arial, Helvetica, sans-serif;}
         * {box-sizing: border-box;}
-
 
         .form-popup {
             display: none;
@@ -21,14 +19,12 @@
             right: 15px;
             border: 3px solid #f1f1f1;
             z-index: 9;
-
         }
 
         .form-container {
             max-width: 300px;
             padding: 10px;
             background-color: white;
-
         }
 
         .form-container input[type=text], .form-container input[type=password] {
@@ -98,6 +94,13 @@
     </form>
 </div>
 
+<form action="#">
+    <input id="st" placeholder="Your name!">
+    <input id="stude" placeholder="Your last name!">
+    <button onclick="createStudent()"> Add Student!</button>
+    <button onclick="creat"> Random</button>
+</form>
+
 <script>
     function createStudent() {
 
@@ -107,7 +110,7 @@
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("POST", "http://localhost:8080/students/save");
         xmlhttp.setRequestHeader("Content-Type", "application/json");
-        xmlhttp.send(JSON.stringify({name: studentName, lastName: studentLastName, teamId: 1}));
+        xmlhttp.send(JSON.stringify({name: studentName, lastName: studentLastName}));
 
         loadStudents();
     }
@@ -119,23 +122,28 @@
             var teams = JSON.parse(xhttp.responseText);
             var html = " ";
             var students = JSON.parse(yhttp.responseText);
+
             for (var i = 0; i < teams.length; i++) {
                 var team = teams[i];
                 console.log(team);
                 html = html + '<tr>' +
                     '           <td>' + team.id + '</td>\n' +
                     '           <td>' + team.nameTeam + '</td>\n' +
-                    '           <td><button onclick="openForm()" >ADD STUDENT</button></td>';
+                    '           <td><button onclick="openForm()" >ADD STUDENT</button>' +
+                    '           <button onclick="deleteTeam()" >Delete Team</button></td>' +
+                    '           <td>Score</td></tr>\n';
 
                 for (var k = 0; k < students.length; k++) {
                     var student = students[k];
                     console.log(student);
                     if (team.id == student.idTeam) {
+
                         html = html + '<tr>' +
-                            '           <td>' + student.id + '</td>\n' +
+                            '           <td><button onClick="openForm()">Del</button></td>\n' +
                             '           <td>' + student.name + '</td>\n' +
-                            '           <td>' + student.lastName + '</td>\n';
-                        createTable(html, student.id, student.name);
+                            '           <td>' + student.lastName + '</td>\n' +
+                            '           <td><input id="student_name" placeholder="Score"></td>\n';
+                        createTable(html);
                     }
                 }
             }
@@ -146,10 +154,15 @@
         yhttp.send();
     }
 
-
     function deleteStudent(studentId) {
         var xhttp = new XMLHttpRequest();
         xhttp.open("DELETE", "http://localhost:8080/students/delete/" + studentId, true);
+        xhttp.send();
+    }
+
+    function deleteTeam(teamId) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("DELETE", "http://localhost:8080/teams/delete/" + teamId, true);
         xhttp.send();
     }
 
@@ -161,7 +174,6 @@
 
     function openForm() {
         document.getElementById("myForm").style.display = "block";
-
         var studentName = document.getElementById("student_name").value;
         var studentLastName = document.getElementById("student_lastName").value;
 
@@ -173,13 +185,8 @@
         document.getElementById("myForm").style.display = "none";
     }
 
-    function createTable(html, idTea, idStud) {
+    function createTable(html) {
         document.getElementById("table").innerHTML = html;
-        var row = table.insertRow(0);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        cell1.innerHTML = idTea;
-        cell2.innerHTML = idStud;
     }
 
     loadStudents();
