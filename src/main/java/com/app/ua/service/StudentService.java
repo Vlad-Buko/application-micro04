@@ -11,6 +11,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Author Vladislav Domaniewski 04
+ */
+
 @Service
 public class StudentService {
     @Autowired
@@ -27,6 +31,11 @@ public class StudentService {
     public StudentEntity complete(Integer id) {
         StudentEntity student = studentRepos.findById(id).get();
         return studentRepos.save(student);
+    }
+
+    public Integer deleteStudent(Integer id) {
+        studentRepos.findById(id);
+        return id;
     }
 
     public List<Student> findAll() {

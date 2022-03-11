@@ -3,6 +3,10 @@ package com.app.ua.model;
 import com.app.ua.entity.StudentEntity;
 import lombok.Data;
 
+/**
+ * Author Vladislav Domaniewski 04
+ */
+
 @Data
 public class Student {
     private Integer id;

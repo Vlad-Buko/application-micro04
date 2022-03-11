@@ -3,7 +3,6 @@ package com.app.ua.service;
 import com.app.ua.entity.TeamEntity;
 import com.app.ua.exception.TeamAlreadyExistException;
 import com.app.ua.exception.TeamNotFoundException;
-import com.app.ua.model.Student;
 import com.app.ua.model.Team;
 import com.app.ua.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;

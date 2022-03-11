@@ -11,17 +11,20 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Author Vladislav Domaniewski 04
+ */
+
 @Log
 @RestController
 @RequestMapping("/students")
-@AllArgsConstructor
 public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @PostMapping
+    @PostMapping()
     public ResponseEntity createStudent(@RequestBody StudentEntity student,
-                                        @RequestParam Integer teamId) {
+                                       @RequestParam  Integer teamId) {
         try {
             return ResponseEntity.ok(studentService.createStudent(student, teamId));
         } catch (Exception e) {
@@ -43,4 +46,12 @@ public class StudentController {
         log.info("Ok students");
         return studentService.findAll();
     }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteStudent (@PathVariable Integer id) {
+        log.info("Student will be removed "  + id);
+        studentService.deleteStudent(id);
+    }
+
+
 }
