@@ -33,6 +33,11 @@ public class StudentService {
         return studentRepos.save(student);
     }
 
+    public Integer deleteStudent(Integer id) {
+        studentRepos.findById(id);
+        return id;
+    }
+
     public List<Student> findAll() {
         return studentRepos.findAll()
                 .stream()

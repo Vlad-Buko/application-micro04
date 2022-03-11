@@ -13,5 +13,3 @@ j
 :src/main/java/com/app/ua/repository/StudentRepository.java,2/1/21e8a52c6f2097ebb1ea8f7a5e20c91f7ea2b932
 X
 (src/main/java/com/app/ua/model/Team.java,8/2/82eb2eef5837f76db01d88fa44c9dbece5e0145d
-a
-1src/main/java/com/app/ua/service/TeamService.java,6/a/6a0fb2b5eee6ef9d2f322f658a2179868df661f3

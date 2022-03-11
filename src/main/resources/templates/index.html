@@ -83,11 +83,11 @@
     <form action="#" class="form-container">
         <h1>Add student</h1>
 
-        <label for="name"><b>Name</b></label>
-        <input id="student_name" type="text" placeholder="Имя студента" name="name" required>
+        <label for="student_name"><b>Name</b></label>
+        <input id="student_name" type="text" placeholder="Имя студента" name="student_name" required>
 
-        <label for="email"><b>Last name</b></label>
-        <input id="student_lastName" type="text" placeholder="Фамилия студента" name="email" required>
+        <label for="student_lastName"><b>Last name</b></label>
+        <input id="student_lastName" type="text" placeholder="Фамилия студента" name="student_lastName" required>
 
         <button onclick="createStudent()" class="btn">Added</button>
         <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
@@ -95,15 +95,13 @@
 </div>
 
 <form action="#">
-    <input id="st" placeholder="Your name!">
-    <input id="stude" placeholder="Your last name!">
-    <button onclick="createStudent()"> Add Student!</button>
+    <input id="st" placeholder="Your team!">
+    <button onclick="createStudent()">Create Team</button>
     <button onclick="creat"> Random</button>
 </form>
 
 <script>
     function createStudent() {
-
         var studentName = document.getElementById("student_name").value;
         var studentLastName = document.getElementById("student_lastName").value;
 
@@ -127,11 +125,11 @@
                 var team = teams[i];
                 console.log(team);
                 html = html + '<tr>' +
-                    '           <td>' + team.id + '</td>\n' +
+                    '           <td></td>\n' +
                     '           <td>' + team.nameTeam + '</td>\n' +
                     '           <td><button onclick="openForm()" >ADD STUDENT</button>' +
                     '           <button onclick="deleteTeam()" >Delete Team</button></td>' +
-                    '           <td>Score</td></tr>\n';
+                    '           <td>Team total score :      0.0 </td></tr>\n';
 
                 for (var k = 0; k < students.length; k++) {
                     var student = students[k];
@@ -139,10 +137,14 @@
                     if (team.id == student.idTeam) {
 
                         html = html + '<tr>' +
-                            '           <td><button onClick="openForm()">Del</button></td>\n' +
+                            '           <td><button type="button" onclick="deleteStudent()" >Del</button></td>\n' +
                             '           <td>' + student.name + '</td>\n' +
                             '           <td>' + student.lastName + '</td>\n' +
-                            '           <td><input id="student_name" placeholder="Score"></td>\n';
+                            '           <td>0.0              \n' +
+                            '           <input id="student_name" placeholder="Score">' +
+                            '           <button onclick="deleteTeam()" >Add score</button></td>\n';
+                        createTable(html);
+                    } else if (team.id != student.idTeam) {
                         createTable(html);
                     }
                 }
@@ -154,13 +156,14 @@
         yhttp.send();
     }
 
-    function deleteStudent(studentId) {
+    function deleteStudent() {
+        var studentId = student.id;
         var xhttp = new XMLHttpRequest();
         xhttp.open("DELETE", "http://localhost:8080/students/delete/" + studentId, true);
         xhttp.send();
     }
 
-    function deleteTeam(teamId) {
+    function deleteTeam() {
         var xhttp = new XMLHttpRequest();
         xhttp.open("DELETE", "http://localhost:8080/teams/delete/" + teamId, true);
         xhttp.send();
@@ -174,11 +177,6 @@
 
     function openForm() {
         document.getElementById("myForm").style.display = "block";
-        var studentName = document.getElementById("student_name").value;
-        var studentLastName = document.getElementById("student_lastName").value;
-
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("POST", "http://localhost:8080/students/save"  )
     }
 
     function closeForm() {

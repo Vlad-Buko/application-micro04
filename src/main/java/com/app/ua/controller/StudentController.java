@@ -18,7 +18,6 @@ import java.util.List;
 @Log
 @RestController
 @RequestMapping("/students")
-@AllArgsConstructor
 public class StudentController {
     @Autowired
     private StudentService studentService;
@@ -47,4 +46,12 @@ public class StudentController {
         log.info("Ok students");
         return studentService.findAll();
     }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteStudent (@PathVariable Integer id) {
+        log.info("Student will be removed "  + id);
+        studentService.deleteStudent(id);
+    }
+
+
 }
