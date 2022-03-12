@@ -24,8 +24,9 @@ public class TeamController {
     @Autowired
     private TeamService teamService;
 
-    @PostMapping
+    @PostMapping("/save")
     public ResponseEntity setTeam(@RequestBody TeamEntity team){
+        log.info("Okee TEAM ADDED");
         try {
             teamService.setTeam(team);
             return ResponseEntity.ok("Our team will be good adding! :)");
@@ -53,7 +54,7 @@ public class TeamController {
         return teamService.findAll();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteTeam(@PathVariable Integer id) {
         try {
             return ResponseEntity.ok(teamService.delete(id));

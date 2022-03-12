@@ -9,8 +9,13 @@
     <title>ApplicationForStudentAssessment</title>
 
     <style>
-        body {font-family: Arial, Helvetica, sans-serif;}
-        * {box-sizing: border-box;}
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
 
         .form-popup {
             display: none;
@@ -47,7 +52,7 @@
             border: none;
             cursor: pointer;
             width: 100%;
-            margin-bottom:10px;
+            margin-bottom: 10px;
             opacity: 0.8;
             font-size: 15px;
             font-weight: bold;
@@ -66,6 +71,7 @@
             border-collapse: collapse;
             width: 60%;
         }
+
         td, th {
             border: 1px solid #73e34f;
             text-align: left;
@@ -95,23 +101,37 @@
 </div>
 
 <form action="#">
-    <input id="st" placeholder="Your team!">
-    <button onclick="createStudent()">Create Team</button>
+    <input id="team_name" placeholder="Your team!">
+    <button onclick="createTeam()">Create Team</button>
     <button onclick="creat"> Random</button>
 </form>
 
 <script>
-    function createStudent() {
+
+    function createStudent(idTeam) {
+        document.getElementById("myForm").style.display = "block";
         var studentName = document.getElementById("student_name").value;
         var studentLastName = document.getElementById("student_lastName").value;
 
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("POST", "http://localhost:8080/students/save");
+        xmlhttp.open("POST", "http://localhost:8080/students/save?teamId=" + idTeam);
         xmlhttp.setRequestHeader("Content-Type", "application/json");
         xmlhttp.send(JSON.stringify({name: studentName, lastName: studentLastName}));
 
         loadStudents();
     }
+
+    function createTeam() {
+        var nameTeamJs = document.getElementById("team_name").value;
+
+        var http = new XMLHttpRequest();
+        http.open("POST", "http://localhost:8080/teams/save", true);
+        http.setRequestHeader("Content-Type-A", "application/json");
+        htpp.send(JSON.stringify({nameTeam : nameTeamJs}));
+
+        loadStudents();
+    }
+
 
     function loadStudents() {
         var xhttp = new XMLHttpRequest();
@@ -127,8 +147,8 @@
                 html = html + '<tr>' +
                     '           <td></td>\n' +
                     '           <td>' + team.nameTeam + '</td>\n' +
-                    '           <td><button onclick="openForm()" >ADD STUDENT</button>' +
-                    '           <button onclick="deleteTeam()" >Delete Team</button></td>' +
+                    '           <td><button onclick="createStudent(' + team.id + ')" >ADD STUDENT</button>' +
+                    '           <button onclick="deleteTeam(' + team.id + ')" >Delete Team</button></td>' +
                     '           <td>Team total score :      0.0 </td></tr>\n';
 
                 for (var k = 0; k < students.length; k++) {
@@ -137,7 +157,7 @@
                     if (team.id == student.idTeam) {
 
                         html = html + '<tr>' +
-                            '           <td><button type="button" onclick="deleteStudent()" >Del</button></td>\n' +
+                            '           <td><button type="button" onclick="deleteStudent(' + student.id + ')" >Del</button></td>\n' +
                             '           <td>' + student.name + '</td>\n' +
                             '           <td>' + student.lastName + '</td>\n' +
                             '           <td>0.0              \n' +
@@ -156,14 +176,14 @@
         yhttp.send();
     }
 
-    function deleteStudent() {
-        var studentId = student.id;
+    function deleteStudent(studentId) {
+        var id = studentId;
         var xhttp = new XMLHttpRequest();
-        xhttp.open("DELETE", "http://localhost:8080/students/delete/" + studentId, true);
+        xhttp.open("DELETE", "http://localhost:8080/students/delete/" + id, true);
         xhttp.send();
     }
 
-    function deleteTeam() {
+    function deleteTeam(teamId) {
         var xhttp = new XMLHttpRequest();
         xhttp.open("DELETE", "http://localhost:8080/teams/delete/" + teamId, true);
         xhttp.send();
@@ -175,10 +195,6 @@
         xhttp.send();
     }
 
-    function openForm() {
-        document.getElementById("myForm").style.display = "block";
-    }
-
     function closeForm() {
         document.getElementById("myForm").style.display = "none";
     }
@@ -186,6 +202,7 @@
     function createTable(html) {
         document.getElementById("table").innerHTML = html;
     }
+
 
     loadStudents();
 </script>

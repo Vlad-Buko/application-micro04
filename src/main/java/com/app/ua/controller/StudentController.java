@@ -22,9 +22,9 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @PostMapping()
+    @PostMapping("/save")
     public ResponseEntity createStudent(@RequestBody StudentEntity student,
-                                       @RequestParam  Integer teamId) {
+                                       @RequestParam Integer teamId) {
         try {
             return ResponseEntity.ok(studentService.createStudent(student, teamId));
         } catch (Exception e) {
@@ -48,9 +48,10 @@ public class StudentController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteStudent (@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteStudent (@PathVariable Integer id) {
         log.info("Student will be removed "  + id);
         studentService.deleteStudent(id);
+        return ResponseEntity.ok().build();
     }
 
 

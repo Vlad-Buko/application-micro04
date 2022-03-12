@@ -33,9 +33,8 @@ public class StudentService {
         return studentRepos.save(student);
     }
 
-    public Integer deleteStudent(Integer id) {
-        studentRepos.findById(id);
-        return id;
+    public void deleteStudent(Integer id) {
+        studentRepos.deleteById(id);
     }
 
     public List<Student> findAll() {
