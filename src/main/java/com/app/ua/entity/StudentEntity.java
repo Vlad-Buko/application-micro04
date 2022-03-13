@@ -18,11 +18,14 @@ public class StudentEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+    @Column(name = "name")
     private String name;
 
-    @Column
+    @Column(name = "last_name")
     private String lastName;
+
+    @Column
+    private Double score;
 
     @ManyToOne
     @JoinColumn(name = "team_id")
@@ -30,5 +33,4 @@ public class StudentEntity {
 
     @Column(name = "team_id", insertable = false, updatable = false)
     private Integer teamId;
-
 }

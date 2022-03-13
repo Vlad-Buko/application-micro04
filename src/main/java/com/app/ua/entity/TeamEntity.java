@@ -15,6 +15,8 @@ import java.util.List;
 @Table(name = "team")
 @NoArgsConstructor
 public class TeamEntity {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

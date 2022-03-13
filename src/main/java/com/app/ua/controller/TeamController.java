@@ -4,7 +4,6 @@ import com.app.ua.entity.TeamEntity;
 import com.app.ua.exception.TeamAlreadyExistException;
 import com.app.ua.exception.TeamNotFoundException;
 import com.app.ua.model.Team;
-import com.app.ua.repository.TeamRepository;
 import com.app.ua.service.TeamService;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,7 @@ public class TeamController {
     private TeamService teamService;
 
     @PostMapping("/save")
-    public ResponseEntity setTeam(@RequestBody TeamEntity team){
+    public ResponseEntity setTeam(@RequestBody TeamEntity team) {
         log.info("Okee TEAM ADDED");
         try {
             teamService.setTeam(team);
@@ -38,7 +37,7 @@ public class TeamController {
     }
 
     @GetMapping
-    public ResponseEntity getTeam (@RequestParam Integer id) {
+    public ResponseEntity getTeam(@RequestParam Integer id) {
         try {
             return ResponseEntity.ok(teamService.getOne(id));
         } catch (TeamNotFoundException e) {
@@ -49,7 +48,7 @@ public class TeamController {
     }
 
     @GetMapping("/findAll")
-    public List<Team> findAllTeam () {
+    public List<Team> findAllTeam() {
         log.info("Ok teams");
         return teamService.findAll();
     }

@@ -13,6 +13,7 @@ public class Student {
     private String name;
     private String lastName;
     private Integer idTeam;
+    private Double score;
 
     public static Student toModel(StudentEntity entity) {
         Student model = new Student();
@@ -20,6 +21,7 @@ public class Student {
         model.setName(entity.getName());
         model.setLastName(entity.getLastName());
         model.setIdTeam(entity.getTeamId());
+        model.setScore(entity.getScore());
         return model;
     }
 }
