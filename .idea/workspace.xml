@@ -4,21 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba166b35-b208-4331-aa45-b436f55c686e" name="Changes" comment="Added methods: &#10;1. I have possibility added Team.&#10;2. And also added Students in Team.&#10;&#10;(c) Version 0.0.5">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/f/7f79af9c7c16f459448fd843a5b10d499b3089b4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/3/a3e3fdef5d438fabfac1454fd397495660421f58" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+    <list default="true" id="ba166b35-b208-4331-aa45-b436f55c686e" name="Changes" comment="version 0.0.5 Finally &#10;&#10;Added liquibase&#10;Table creation system changed&#10;&#10;(c) Version 0.0.5">
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="version.0.0.4" />
+        <entry key="$PROJECT_DIR$" value="version.0.0.5" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -169,7 +156,7 @@
       <workItem from="1647249601134" duration="34000" />
       <workItem from="1647249661049" duration="77000" />
       <workItem from="1647249808575" duration="225000" />
-      <workItem from="1647250039266" duration="5065000" />
+      <workItem from="1647250039266" duration="5425000" />
     </task>
     <task id="LOCAL-00001" summary="Added new files.&#10;Make new table">
       <created>1646663434967</created>
@@ -220,7 +207,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647203725387</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="version 0.0.5 Finally &#10;&#10;Added liquibase&#10;Table creation system changed&#10;&#10;(c) Version 0.0.5">
+      <created>1647256959886</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1647256959886</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -249,7 +243,8 @@
     <MESSAGE value="Update front .02" />
     <MESSAGE value="Update front .03" />
     <MESSAGE value="Added methods: &#10;1. I have possibility added Team.&#10;2. And also added Students in Team.&#10;&#10;(c) Version 0.0.5" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added methods: &#10;1. I have possibility added Team.&#10;2. And also added Students in Team.&#10;&#10;(c) Version 0.0.5" />
+    <MESSAGE value="version 0.0.5 Finally &#10;&#10;Added liquibase&#10;Table creation system changed&#10;&#10;(c) Version 0.0.5" />
+    <option name="LAST_COMMIT_MESSAGE" value="version 0.0.5 Finally &#10;&#10;Added liquibase&#10;Table creation system changed&#10;&#10;(c) Version 0.0.5" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
