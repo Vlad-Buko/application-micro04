@@ -9,8 +9,13 @@
     <title>ApplicationForStudentAssessment</title>
 
     <style>
-        body {font-family: Arial, Helvetica, sans-serif;}
-        * {box-sizing: border-box;}
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
 
         .form-popup {
             display: none;
@@ -47,7 +52,7 @@
             border: none;
             cursor: pointer;
             width: 100%;
-            margin-bottom:10px;
+            margin-bottom: 10px;
             opacity: 0.8;
             font-size: 15px;
             font-weight: bold;
@@ -57,15 +62,12 @@
             background-color: #ff4498;
         }
 
-        .form-container .btn:hover, .open-button:hover {
-            opacity: 1;
-        }
-
         table {
             font-family: arial, sans-serif;
             border-collapse: collapse;
             width: 60%;
         }
+
         td, th {
             border: 1px solid #73e34f;
             text-align: left;
@@ -82,12 +84,11 @@
 <div class="form-popup" id="myForm">
     <form action="#" class="form-container">
         <h1>Add student</h1>
+        <label for="stud_name"><b>Name </b></label>
+        <input id="stud_name" type="text" placeholder="Имя" name="name" required>
 
-        <label for="student_name"><b>Name</b></label>
-        <input id="student_name" type="text" placeholder="Имя студента" name="student_name" required>
-
-        <label for="student_lastName"><b>Last name</b></label>
-        <input id="student_lastName" type="text" placeholder="Фамилия студента" name="student_lastName" required>
+        <label for="stud_lastName"><b>Last name</b></label>
+        <input id="stud_lastName" type="text" placeholder="Фамилия студента" name="lastName" required>
 
         <button onclick="createStudent()" class="btn">Added</button>
         <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
@@ -95,56 +96,73 @@
 </div>
 
 <form action="#">
-    <input id="st" placeholder="Your team!">
-    <button onclick="createStudent()">Create Team</button>
+    <label for="team_name"></label>
+    <input id="team_name" type="text" placeholder="Your team!" name="NameTeam" required>
+    <button onclick="createTeam()">Create Team</button>
     <button onclick="creat"> Random</button>
 </form>
 
 <script>
-    function createStudent() {
-        var studentName = document.getElementById("student_name").value;
-        var studentLastName = document.getElementById("student_lastName").value;
+    loadStudents();
 
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("POST", "http://localhost:8080/students/save");
+    let idTeams;
+
+    function createStudent() {
+        let studentLastName = document.getElementById("stud_lastName").value;
+        let studentName = document.getElementById("stud_name").value;
+
+        let xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("POST", "http://localhost:8080/students/save?teamId=" + idTeams);
         xmlhttp.setRequestHeader("Content-Type", "application/json");
         xmlhttp.send(JSON.stringify({name: studentName, lastName: studentLastName}));
 
         loadStudents();
     }
 
-    function loadStudents() {
-        var xhttp = new XMLHttpRequest();
-        var yhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            var teams = JSON.parse(xhttp.responseText);
-            var html = " ";
-            var students = JSON.parse(yhttp.responseText);
+    function createTeam() {
+        let nameTeamJs = document.getElementById("team_name").value;
 
-            for (var i = 0; i < teams.length; i++) {
-                var team = teams[i];
+        let thttp = new XMLHttpRequest();
+        thttp.open("POST", "http://localhost:8080/teams/save", true);
+        thttp.setRequestHeader("Content-Type", "application/json");
+        thttp.send(JSON.stringify({nameTeam: nameTeamJs}));
+
+        loadStudents();
+    }
+
+
+    function loadStudents() {
+        let xhttp = new XMLHttpRequest();
+        let yhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            let teams = JSON.parse(xhttp.responseText);
+            let html = " ";
+            let students = JSON.parse(yhttp.responseText);
+
+            for (let i = 0; i < teams.length; i++) {
+                let team = teams[i];
                 console.log(team);
                 html = html + '<tr>' +
                     '           <td></td>\n' +
                     '           <td>' + team.nameTeam + '</td>\n' +
-                    '           <td><button onclick="openForm()" >ADD STUDENT</button>' +
-                    '           <button onclick="deleteTeam()" >Delete Team</button></td>' +
+                    '           <td><button onclick="openFormForCreateStudent(' + team.id + ')">ADD STUDENT</button>' +
+                    '           <button onclick="deleteTeam(' + team.id + ')" >Delete Team</button></td>' +
                     '           <td>Team total score :      0.0 </td></tr>\n';
 
-                for (var k = 0; k < students.length; k++) {
-                    var student = students[k];
+                for (let k = 0; k < students.length; k++) {
+                    let student = students[k];
                     console.log(student);
-                    if (team.id == student.idTeam) {
+                    if (team.id === student.idTeam) {
 
                         html = html + '<tr>' +
-                            '           <td><button type="button" onclick="deleteStudent()" >Del</button></td>\n' +
+                            '           <td><button type="button" onclick="deleteStudent(' + student.id + ')" >Del</button></td>\n' +
                             '           <td>' + student.name + '</td>\n' +
                             '           <td>' + student.lastName + '</td>\n' +
                             '           <td>0.0              \n' +
                             '           <input id="student_name" placeholder="Score">' +
-                            '           <button onclick="deleteTeam()" >Add score</button></td>\n';
+                            '           <button onclick="plusBall()" >Add score</button></td>\n';
                         createTable(html);
-                    } else if (team.id != student.idTeam) {
+                    } else if (team.id !== student.idTeam) {
                         createTable(html);
                     }
                 }
@@ -156,27 +174,28 @@
         yhttp.send();
     }
 
-    function deleteStudent() {
-        var studentId = student.id;
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("DELETE", "http://localhost:8080/students/delete/" + studentId, true);
+    function deleteStudent(studentId) {
+        let id = studentId;
+        let xhttp = new XMLHttpRequest();
+        xhttp.open("DELETE", "http://localhost:8080/students/delete/" + id, true);
         xhttp.send();
     }
 
-    function deleteTeam() {
+    function deleteTeam(teamId) {
         var xhttp = new XMLHttpRequest();
         xhttp.open("DELETE", "http://localhost:8080/teams/delete/" + teamId, true);
         xhttp.send();
     }
 
     function plusBall(studentId) {
-        var xhttp = new XMLHttpRequest();
+        let xhttp = new XMLHttpRequest();
         xhttp.open("POST", "http://localhost:8080/students/upperBall/" + studentId, true);
         xhttp.send();
     }
 
-    function openForm() {
+    function openFormForCreateStudent(teamId) {
         document.getElementById("myForm").style.display = "block";
+        idTeams = teamId;
     }
 
     function closeForm() {
@@ -186,7 +205,6 @@
     function createTable(html) {
         document.getElementById("table").innerHTML = html;
     }
-
     loadStudents();
 </script>
 </body>

@@ -3,7 +3,6 @@ package com.app.ua.controller;
 import com.app.ua.entity.StudentEntity;
 import com.app.ua.model.Student;
 import com.app.ua.service.StudentService;
-import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,14 +21,11 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @PostMapping()
-    public ResponseEntity createStudent(@RequestBody StudentEntity student,
-                                       @RequestParam  Integer teamId) {
-        try {
-            return ResponseEntity.ok(studentService.createStudent(student, teamId));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error");
-        }
+    @PostMapping("/save")
+    public void createStudent(@RequestBody StudentEntity student,
+                              @RequestParam Integer teamId) {
+        log.info("Save student " + student.getName() + " " + student.getLastName());
+        studentService.createStudent(student, teamId);
     }
 
     @PutMapping
@@ -48,9 +44,10 @@ public class StudentController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteStudent (@PathVariable Integer id) {
-        log.info("Student will be removed "  + id);
+    public ResponseEntity<Void> deleteStudent(@PathVariable Integer id) {
+        log.info("Student will be removed " + id);
         studentService.deleteStudent(id);
+        return ResponseEntity.ok().build();
     }
 
 

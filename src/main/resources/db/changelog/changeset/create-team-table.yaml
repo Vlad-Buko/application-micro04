@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-team
+      author: Vladislav
+      changes:
+        - createTable:
+            tableName: team
+            columns:
+              - column:
+                  name: id
+                  type: integer
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name_team
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
