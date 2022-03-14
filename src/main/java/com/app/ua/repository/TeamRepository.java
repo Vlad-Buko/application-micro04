@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Author Vladislav Domaniewski 04
  */
 
-public interface TeamRepository extends JpaRepository <TeamEntity, Integer> {
+public interface TeamRepository extends JpaRepository <TeamEntity, Long> {
     TeamEntity findByNameTeam(String nameTeam);
 }

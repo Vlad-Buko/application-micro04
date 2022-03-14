@@ -27,7 +27,7 @@ public class TeamService {
         return teamRepos.save(team);
     }
 
-    public Team getOne(Integer id) throws TeamNotFoundException {
+    public Team getOne(Long id) throws TeamNotFoundException {
         TeamEntity team = teamRepos.findById(id).get();
         if (team == null) {
             throw new TeamNotFoundException("Команда не найдена!");
@@ -42,7 +42,7 @@ public class TeamService {
                 .collect(Collectors.toList());
     }
 
-    public Integer delete(Integer id) {
+    public Long delete(Long id) {
         teamRepos.deleteById(id);
         return id;
     }

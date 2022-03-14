@@ -23,13 +23,14 @@ public class StudentController {
 
     @PostMapping("/save")
     public void createStudent(@RequestBody StudentEntity student,
-                              @RequestParam Integer teamId) {
+                              @RequestParam Long teamId) {
         log.info("Save student " + student.getName() + " " + student.getLastName());
         studentService.createStudent(student, teamId);
     }
 
-    @PutMapping
-    public ResponseEntity updateStudent(@RequestParam Integer id) {
+    @PutMapping("/update")
+    public ResponseEntity updateStudent(@RequestBody
+                                        @RequestParam Long id) {
         try {
             return ResponseEntity.ok(studentService.complete(id));
         } catch (Exception e) {
@@ -39,12 +40,11 @@ public class StudentController {
 
     @GetMapping("/findAll")
     public List<Student> findAllStudents() {
-        log.info("Ok students");
         return studentService.findAll();
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteStudent(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
         log.info("Student will be removed " + id);
         studentService.deleteStudent(id);
         return ResponseEntity.ok().build();

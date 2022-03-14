@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Data
 public class Team {
-    private Integer id;
+    private Long id;
     private String nameTeam;
 
     public static Team toModel (TeamEntity entity) {

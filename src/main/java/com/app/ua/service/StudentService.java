@@ -22,18 +22,20 @@ public class StudentService {
     @Autowired
     private TeamRepository teamRepos;
 
-    public Student createStudent(StudentEntity student, Integer teamId) {
+    public Student createStudent(StudentEntity student, Long teamId) {
         TeamEntity team = teamRepos.findById(teamId).get();
         student.setTeam(team);
         return Student.toModel(studentRepos.save(student));
     }
 
-    public StudentEntity complete(Integer id) {
+    public StudentEntity complete(Long id) {
         StudentEntity student = studentRepos.findById(id).get();
         return studentRepos.save(student);
     }
 
-    public void deleteStudent(Integer id) {
+
+
+    public void deleteStudent(Long id) {
         studentRepos.deleteById(id);
     }
 

@@ -3,6 +3,7 @@ package com.app.ua.controller;
 import com.app.ua.entity.TeamEntity;
 import com.app.ua.exception.TeamAlreadyExistException;
 import com.app.ua.exception.TeamNotFoundException;
+import com.app.ua.model.Student;
 import com.app.ua.model.Team;
 import com.app.ua.service.TeamService;
 import lombok.extern.java.Log;
@@ -37,7 +38,7 @@ public class TeamController {
     }
 
     @GetMapping
-    public ResponseEntity getTeam(@RequestParam Integer id) {
+    public ResponseEntity getTeam(@RequestParam Long id) {
         try {
             return ResponseEntity.ok(teamService.getOne(id));
         } catch (TeamNotFoundException e) {
@@ -49,12 +50,11 @@ public class TeamController {
 
     @GetMapping("/findAll")
     public List<Team> findAllTeam() {
-        log.info("Ok teams");
         return teamService.findAll();
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity deleteTeam(@PathVariable Integer id) {
+    public ResponseEntity deleteTeam(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(teamService.delete(id));
         } catch (Exception e) {

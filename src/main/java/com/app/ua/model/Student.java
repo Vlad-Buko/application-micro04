@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Data
 public class Student {
-    private Integer id;
+    private Long id;
     private String name;
     private String lastName;
     private Integer idTeam;

@@ -8,7 +8,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  type: integer
+                  type: bigint
                   autoIncrement: true
                   constraints:
                     primaryKey: true
@@ -25,11 +25,11 @@ databaseChangeLog:
                     nullable: true
               - column:
                   name: team_id
-                  type: integer
+                  type: bigint
                   constraints:
                     nullable: false
                     foreignKeyName: fk_abc_account
                     references: team(id)
               - column:
                   name: score
-                  type: integer
+                  type: bigint
