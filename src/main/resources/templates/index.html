@@ -72,10 +72,11 @@
         }
 
     </style>
+
 </head>
 <body>
 
-<div class="form-popup" id="myForm">
+<div class="form-popup" id="formForCreateStudent">
     <form action="#" class="form-container">
         <h1>Add student</h1>
         <label for="stud_name"><b>Name </b></label>
@@ -89,14 +90,26 @@
     </form>
 </div>
 
-<form action="#">
-    <label for="team_name"></label>
-    <input id="team_name" type="text" placeholder="Your team!" name="NameTeam" required>
-    <button onclick="createTeam()">Create Team</button>
+<div class="form-popup" id="formForAddedScoreStudent">
+    <form action="#" class="form-container">
+        <h1>Score</h1>
+        <label for="score"><b>Add score</b></label>
+        <input id="score" type="text" placeholder="Балл" name="scoreStudent" required>
+
+        <button onclick="updateScoreStudent()" class="btn">Added</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
+</div>
+
+<form id="formForCreateTeam">
+    <label For="team_name"></label>
+    <input id="team_name" type="text" placeholder="Score" name="NameTeam" required>
+    <button onClick="createTeam()">Add team</button>
 </form>
 
 <script>
     let idTeams;
+    let idStudents;
 
     function createStudent() {
         let studentLastName = document.getElementById("stud_lastName").value;
@@ -121,23 +134,33 @@
         loadStudents();
     }
 
+    function updateScoreStudent() {
+        let studentScore = document.getElementById("score").value;
+
+        let lhttp = new XMLHttpRequest();
+        lhttp.open("PUT", "http://localhost:8080/students/update?studentId=" + idStudents);
+        lhttp.setRequestHeader("Content-Type", "application/json");
+        lhttp.send(JSON.stringify({score : studentScore}));
+
+        loadStudents();
+    }
+
     function loadStudents() {
         var xhttp = new XMLHttpRequest();
         var yhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             let teams = JSON.parse(xhttp.responseText);
-            let html = " ";
             let students = JSON.parse(yhttp.responseText);
-
+            var html = " ";
             for (let i = 0; i < teams.length; i++) {
                 let team = teams[i];
                 console.log(team);
                 html = html + '<tr>' +
                     '           <td></td>\n' +
                     '           <td>' + team.nameTeam + '</td>\n' +
-                    '           <td><button onclick="openFormForCreateStudent(' + team.id + ')">ADD STUDENT</button>' +
+                    '           <td><button onclick="openFormForCreateStudent(' + team.id + ')">ADD</button>' +
                     '           <button onclick="deleteTeam(' + team.id + ')" >Delete Team</button></td>' +
-                    '           <td>Team total score :      0.0 </td></tr>\n';
+                    '           <td>Team total score : 0.0</td></tr>\n';
                 for (let k = 0; k < students.length; k++) {
                     let student = students[k];
                     console.log(student);
@@ -148,17 +171,16 @@
                             '           <td>' + student.lastName + '</td>\n' +
                             '           <td>' + student.score + '\n' +
                             '           <button onclick="random()" >Answer</button> \n' +
-                            '           <button onclick="plusBall()" >Add score</button></td>\n';
+                            '           <button onclick="openFormForAddedScore('+ student.id +')">Add ball</button></td>\n';
                     }
                 }
             }
             createTable(html);
         }
-        xhttp.open("GET", "http://localhost:8080/teams/findAll", true);
-        xhttp.send();
-
-        yhttp.open("GET", "http://localhost:8080/students/findAll", true);
+        yhttp.open("GET", "http://localhost:8080/students/findAll", false);
         yhttp.send();
+        xhttp.open("GET", "http://localhost:8080/teams/findAll", false);
+        xhttp.send();
     }
 
     function deleteStudent(studentId) {
@@ -174,26 +196,24 @@
         xhttp.send();
     }
 
-    function plusBall(studentId) {
-        let xhttp = new XMLHttpRequest();
-        document.getElementById("")
-        xhttp.open("POST", "http://localhost:8080/students/upperBall/" + studentId, true);
-        xhttp.send();
+    function openFormForAddedScore(studentId) {
+        document.getElementById("formForAddedScoreStudent").style.display = "block";
+        idStudents = studentId;
     }
 
     function openFormForCreateStudent(teamId) {
-        document.getElementById("myForm").style.display = "block";
+        document.getElementById("formForCreateStudent").style.display = "block";
         idTeams = teamId;
     }
 
     function closeForm() {
-        document.getElementById("myForm").style.display = "none";
+        document.getElementById("formForCreateStudent").style.display = "none";
+        document.getElementById("formForAddScore").style.display = "none";
     }
 
     function createTable(html) {
         document.getElementById("table").innerHTML = html;
     }
-
     loadStudents();
 </script>
 </body>

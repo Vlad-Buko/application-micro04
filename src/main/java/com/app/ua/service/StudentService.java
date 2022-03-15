@@ -28,8 +28,9 @@ public class StudentService {
         return Student.toModel(studentRepos.save(student));
     }
 
-    public StudentEntity complete(Long id) {
+    public StudentEntity complete(Long id, double score) {
         StudentEntity student = studentRepos.findById(id).get();
+        student.setScore(score);
         return studentRepos.save(student);
     }
 

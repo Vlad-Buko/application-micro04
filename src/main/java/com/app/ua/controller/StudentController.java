@@ -29,10 +29,12 @@ public class StudentController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity updateStudent(@RequestBody
-                                        @RequestParam Long id) {
+    public ResponseEntity updateStudent(@RequestBody StudentEntity student,
+                                        @RequestParam Long studentid) {
+        log.info(studentid + "dd");
         try {
-            return ResponseEntity.ok(studentService.complete(id));
+            double score = student.getScore();
+            return ResponseEntity.ok(studentService.complete(studentid, score));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");
         }
