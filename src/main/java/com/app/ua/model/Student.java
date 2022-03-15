@@ -12,7 +12,7 @@ public class Student {
     private Long id;
     private String name;
     private String lastName;
-    private Integer idTeam;
+    private Long idTeam;
     private Double score;
 
     public static Student toModel(StudentEntity entity) {

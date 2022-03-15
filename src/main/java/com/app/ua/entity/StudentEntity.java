@@ -32,5 +32,5 @@ public class StudentEntity {
     private TeamEntity team;
 
     @Column(name = "team_id", insertable = false, updatable = false)
-    private Integer teamId;
+    private Long teamId;
 }
