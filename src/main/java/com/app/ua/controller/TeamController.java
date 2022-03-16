@@ -26,6 +26,7 @@ public class TeamController {
 
     @PostMapping("/save")
     public ResponseEntity setTeam(@RequestBody TeamEntity team) {
+        team.setScoreTeam(0.0);
         log.info("Okee TEAM ADDED");
         try {
             teamService.setTeam(team);

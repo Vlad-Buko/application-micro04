@@ -3,7 +3,9 @@ package com.app.ua.service;
 import com.app.ua.entity.TeamEntity;
 import com.app.ua.exception.TeamAlreadyExistException;
 import com.app.ua.exception.TeamNotFoundException;
+import com.app.ua.model.Student;
 import com.app.ua.model.Team;
+import com.app.ua.repository.StudentRepository;
 import com.app.ua.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,11 @@ import java.util.stream.Collectors;
 public class TeamService {
     @Autowired
     private TeamRepository teamRepos;
+    @Autowired
+    private StudentRepository studentRepository;
+    @Autowired
+    private UpdateTeamScore updateTeamScore;
+    Student student;
 
     public TeamEntity setTeam(TeamEntity team) throws TeamAlreadyExistException {
         if (teamRepos.findByNameTeam(team.getNameTeam()) != null) {

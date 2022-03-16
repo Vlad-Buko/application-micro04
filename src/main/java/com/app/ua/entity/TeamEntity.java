@@ -26,4 +26,7 @@ public class TeamEntity {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "team")
     private List<StudentEntity> teams;
+
+    @Column
+    private double ScoreTeam;
 }

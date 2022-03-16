@@ -25,12 +25,15 @@ public class StudentService {
     public Student createStudent(StudentEntity student, Long teamId) {
         TeamEntity team = teamRepos.findById(teamId).get();
         student.setTeam(team);
+
         return Student.toModel(studentRepos.save(student));
     }
 
-    public StudentEntity complete(Long id, double score) {
+    public StudentEntity addingScore(Long id, Double score) {
         StudentEntity student = studentRepos.findById(id).get();
-        student.setScore(score);
+        Double valueScoreStudent = student.getScore();
+        Double result = valueScoreStudent + score;
+        student.setScore(result);
         return studentRepos.save(student);
     }
 
