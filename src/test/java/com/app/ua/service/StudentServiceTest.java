@@ -27,6 +27,7 @@ class StudentServiceTest {
     @Test
     void createStudent() {
         StudentEntity studentEntity = new StudentEntity();
+
         Assert.assertEquals(studentEntity,service.createStudent(studentEntity,0l));
 
     }
