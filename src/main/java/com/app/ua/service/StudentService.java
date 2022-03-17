@@ -22,11 +22,10 @@ public class StudentService {
     @Autowired
     private TeamRepository teamRepos;
 
-    public Student createStudent(StudentEntity student, Long teamId) {
+    public Student createStudent(StudentEntity studentEntity, Long teamId) {
         TeamEntity team = teamRepos.findById(teamId).get();
-        student.setTeam(team);
-
-        return Student.toModel(studentRepos.save(student));
+        studentEntity.setTeam(team);
+        return Student.toModel(studentRepos.save(studentEntity));
     }
 
     public StudentEntity addingScore(Long id, Double score) {

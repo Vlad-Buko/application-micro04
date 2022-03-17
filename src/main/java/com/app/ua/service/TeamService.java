@@ -28,11 +28,12 @@ public class TeamService {
     private UpdateTeamScore updateTeamScore;
     Student student;
 
-    public TeamEntity setTeam(TeamEntity team) throws TeamAlreadyExistException {
+    public boolean setTeam(TeamEntity team) throws TeamAlreadyExistException {
         if (teamRepos.findByNameTeam(team.getNameTeam()) != null) {
             throw  new TeamAlreadyExistException("This team will be here entity!!!");
         }
-        return teamRepos.save(team);
+        teamRepos.save(team);
+        return true;
     }
 
     public Team getOne(Long id) throws TeamNotFoundException {

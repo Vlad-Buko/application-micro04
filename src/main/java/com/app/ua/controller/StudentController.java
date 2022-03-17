@@ -25,11 +25,11 @@ public class StudentController {
     private UpdateTeamScore updateTeamScore;
 
     @PostMapping("/save")
-    public void createStudent(@RequestBody StudentEntity student,
+    public void createStudent(@RequestBody StudentEntity studentEntity,
                               @RequestParam Long teamId) {
-        student.setScore(0.0);
-        log.info("Save student " + student.getName() + " " + student.getLastName());
-        studentService.createStudent(student, teamId);
+        studentEntity.setScore(0.0);
+        log.info("Save student " + studentEntity.getName() + " " + studentEntity.getLastName());
+        studentService.createStudent(studentEntity, teamId);
     }
 
     @PutMapping("/update")

@@ -107,6 +107,7 @@
     <button onClick="createTeam()">Add team</button>
 </form>
 
+<a href="Giton"> Click</a>
 <script>
     let idTeams;
     let idStudents;
@@ -145,6 +146,14 @@
         loadStudents();
     }
 
+    function randomChooseQuestion(studentId) {
+        let jhttp = new XMLHttpRequest();
+        jhttp.open("GET", "http://localhost:8080/students/random?studentId" + studentId);
+        jhttp.setRequestHeader("Content-Type", "application/json");
+
+        loadStudents();
+    }
+
     function loadStudents() {
         var xhttp = new XMLHttpRequest();
         var yhttp = new XMLHttpRequest();
@@ -170,7 +179,7 @@
                             '           <td>' + student.name + '</td>\n' +
                             '           <td>' + student.lastName + '</td>\n' +
                             '           <td>' + student.score + '\n' +
-                            '           <button onclick="random()" >Answer</button> \n' +
+                            '           <button onclick="randomChooseQuestion(' + student.id + ')" >Answer</button> \n' +
                             '           <button onclick="openFormForAddedScore('+ student.id +')">Add ball</button></td>\n';
                     }
                 }
@@ -208,7 +217,7 @@
 
     function closeForm() {
         document.getElementById("formForCreateStudent").style.display = "none";
-        document.getElementById("formForAddScore").style.display = "none";
+        document.getElementById("formForAddedScoreStudent").style.display = "none";
     }
 
     function createTable(html) {
