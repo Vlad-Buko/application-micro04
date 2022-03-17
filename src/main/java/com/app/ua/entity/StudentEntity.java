@@ -1,5 +1,6 @@
 package com.app.ua.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Table(name = "student")
 public class StudentEntity {
@@ -25,7 +27,7 @@ public class StudentEntity {
     private String lastName;
 
     @Column
-    private double score;
+    private Double score;
 
     @ManyToOne
     @JoinColumn(name = "team_id")

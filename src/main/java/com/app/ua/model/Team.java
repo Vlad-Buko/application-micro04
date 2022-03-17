@@ -11,11 +11,13 @@ import lombok.Data;
 public class Team {
     private Long id;
     private String nameTeam;
+    private double teamScore;
 
     public static Team toModel (TeamEntity entity) {
         Team model = new Team();
         model.setId(entity.getId());
         model.setNameTeam(entity.getNameTeam());
+        model.setTeamScore(entity.getScoreTeam());
         return model;
     }
 }

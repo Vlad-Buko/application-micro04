@@ -32,4 +32,5 @@ databaseChangeLog:
                     references: team(id)
               - column:
                   name: score
-                  type: bigint
+                  type: double precision
+

@@ -3,6 +3,7 @@ package com.app.ua.controller;
 import com.app.ua.entity.StudentEntity;
 import com.app.ua.model.Student;
 import com.app.ua.service.StudentService;
+import com.app.ua.service.UpdateTeamScore;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,21 +21,25 @@ import java.util.List;
 public class StudentController {
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private UpdateTeamScore updateTeamScore;
 
     @PostMapping("/save")
-    public void createStudent(@RequestBody StudentEntity student,
+    public void createStudent(@RequestBody StudentEntity studentEntity,
                               @RequestParam Long teamId) {
-        log.info("Save student " + student.getName() + " " + student.getLastName());
-        studentService.createStudent(student, teamId);
+        studentEntity.setScore(0.0);
+        log.info("Save student " + studentEntity.getName() + " " + studentEntity.getLastName());
+        studentService.createStudent(studentEntity, teamId);
     }
 
     @PutMapping("/update")
     public ResponseEntity updateStudent(@RequestBody StudentEntity student,
-                                        @RequestParam Long studentid) {
-        log.info(studentid + "dd");
+                                        @RequestParam Long studentId) {
+        log.info(studentId + "dd");
+        updateTeamScore.updateTeam();
         try {
-            double score = student.getScore();
-            return ResponseEntity.ok(studentService.complete(studentid, score));
+            Double score = student.getScore();
+            return ResponseEntity.ok(studentService.addingScore(studentId, score));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");
         }

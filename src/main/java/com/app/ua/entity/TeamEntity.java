@@ -1,5 +1,6 @@
 package com.app.ua.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "team")
 @NoArgsConstructor
+@AllArgsConstructor
 public class TeamEntity {
 
 
@@ -26,4 +28,11 @@ public class TeamEntity {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "team")
     private List<StudentEntity> teams;
+
+    @Column
+    private double ScoreTeam;
+
+//    @ManyToOne
+//    @JoinColumn(name = "lesson_id")
+//    private LessonEntity lessonsEntity;
 }
