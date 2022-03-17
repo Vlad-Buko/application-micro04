@@ -1,5 +1,6 @@
 package com.app.ua.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "team")
 @NoArgsConstructor
+@AllArgsConstructor
 public class TeamEntity {
 
 
