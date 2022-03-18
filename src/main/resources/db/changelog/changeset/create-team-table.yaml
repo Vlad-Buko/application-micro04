@@ -19,5 +19,12 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
+                  name: group_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_hkr_account
+                    references: group(id)
+              - column:
                   name: score_team
                   type: double precision

@@ -27,12 +27,13 @@ public class TeamEntity {
     private String nameTeam;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "team")
-    private List<StudentEntity> teams;
+    private List<StudentEntity> studentEntities;
 
     @Column
     private double ScoreTeam;
 
-//    @ManyToOne
-//    @JoinColumn(name = "lesson_id")
-//    private LessonEntity lessonsEntity;
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private GroupEntity group;
+
 }
