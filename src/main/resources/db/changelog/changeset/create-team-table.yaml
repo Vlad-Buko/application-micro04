@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: create-team
+      id: create_team
       author: Vladislav
       changes:
         - createTable:
@@ -24,7 +24,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     foreignKeyName: fk_hkr_account
-                    references: group(id)
+                    references: lesson(id)
               - column:
                   name: score_team
                   type: double precision

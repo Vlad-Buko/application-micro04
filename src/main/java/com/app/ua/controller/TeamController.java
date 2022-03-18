@@ -38,8 +38,8 @@ public class TeamController {
         }
     }
 
-    @GetMapping
-    public ResponseEntity getTeam(@RequestParam Long id) {
+    @GetMapping("/chooseTeam")
+    public ResponseEntity getTeam(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(teamService.getOne(id));
         } catch (TeamNotFoundException e) {
