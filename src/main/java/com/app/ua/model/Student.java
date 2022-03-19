@@ -18,6 +18,8 @@ public class Student {
     private Long idTeam;
     private Double score;
 
+    /** toModel in another class */
+
     public static Student toModel(StudentEntity entity) {
         Student model = new Student();
         model.setId(entity.getId());

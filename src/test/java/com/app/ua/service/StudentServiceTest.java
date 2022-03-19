@@ -47,7 +47,7 @@ class StudentServiceTest {
 
     @Test
     void deleteTeam() throws Exception {
-        TeamEntity teamEntity = new TeamEntity(1l, "Team1", null, 0.0, null );
+        TeamEntity teamEntity = new TeamEntity(1l, "Team1", null, 0.0, null);
         teamService.createTeam(teamEntity);
         Long value = teamService.delete(1l);
         Long expected = 1l;

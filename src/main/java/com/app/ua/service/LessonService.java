@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Author Vladislav Domaniewski 04
+ */
+
 @Service
 public class LessonService {
     @Autowired

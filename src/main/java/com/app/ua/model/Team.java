@@ -19,6 +19,8 @@ public class Team {
     private double teamScore;
     private List<Student> students;
 
+    /** toModel in another class */
+
     public static Team toModel (TeamEntity entity) {
         Team model = new Team();
         model.setId(entity.getId());

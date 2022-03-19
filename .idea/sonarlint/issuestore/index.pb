@@ -1,19 +1,11 @@
 
-9
-	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 q
 Asrc/main/java/com/app/ua/exception/TeamAlreadyExistException.java,2/f/2fb59f860f2a64b9dab05fe47ff11a5cf68adadb
 Y
 )src/main/java/com/app/ua/Application.java,7/f/7f79af9c7c16f459448fd843a5b10d499b3089b4
 g
 7src/main/java/com/app/ua/repository/TeamRepository.java,e/7/e7109371ae72cda6cd501f8bcf17b4bf83a7513b
-e
-5src/main/java/com/app/ua/service/UpdateTeamScore.java,f/7/f725430f7328522e4b734b2832727df6ca83d243
 7
 pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
-[
-+src/main/java/com/app/ua/model/Student.java,c/2/c2cadcb08d217c6c2877e37bbd05c04ff9f69060
 j
 :src/main/java/com/app/ua/repository/StudentRepository.java,2/1/21e8a52c6f2097ebb1ea8f7a5e20c91f7ea2b932
-d
-4src/main/java/com/app/ua/service/StudentService.java,7/d/7d759bdb02706f519b0aee6794d9c5872871bd0a

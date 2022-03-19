@@ -51,5 +51,9 @@ public class StudentController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping
+    public void randomStudent(@PathVariable Long id) {
+    }
+
 
 }

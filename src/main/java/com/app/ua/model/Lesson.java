@@ -18,6 +18,8 @@ public class Lesson {
     private String lessonNote;
     private String date;
 
+    /** toModel in another class */
+
     public static Lesson toModel(LessonEntity lessonEntity) {
         Lesson lessonModel = new Lesson();
         lessonModel.setId(lessonEntity.getId());

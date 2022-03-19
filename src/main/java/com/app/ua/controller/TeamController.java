@@ -4,7 +4,6 @@ import com.app.ua.entity.LessonEntity;
 import com.app.ua.entity.TeamEntity;
 import com.app.ua.exception.TeamAlreadyExistException;
 import com.app.ua.exception.TeamNotFoundException;
-import com.app.ua.model.Student;
 import com.app.ua.model.Team;
 import com.app.ua.service.TeamService;
 import lombok.extern.java.Log;
@@ -26,10 +25,9 @@ public class TeamController {
     private TeamService teamService;
 
     @PostMapping("/save")
-    public ResponseEntity createTeam(@RequestBody TeamEntity team,
-                                  @PathVariable LessonEntity lesson) {
-        team.setLesson(lesson);
+    public ResponseEntity createTeam(@RequestBody TeamEntity team) {
         team.setScoreTeam(0.0);
+        team.setLesson(new LessonEntity(1l, null, null, null, null));
         log.info("Oke TEAM ADDED");
         try {
             teamService.createTeam(team);

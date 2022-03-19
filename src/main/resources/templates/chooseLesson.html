@@ -30,11 +30,11 @@
 
 <form id="formForCreateLesson">
     <label For="lesson_name"></label>
-    <input id="lesson_name" type="text" placeholder="Your new lesson" name="Name lesson" required>
+    <input id="lesson_name" type="text" placeholder="Название урока" name="Name lesson" required>
     <label For="lesson_note"></label>
-    <input id="lesson_note" type="text" placeholder="Your new lesson" name="Note lesson" required>
+    <input id="lesson_note" type="text" placeholder="Заметки, группа" name="Note lesson" required>
     <label For="lesson_date"></label>
-    <input id="lesson_date" type="text" placeholder="Your new lesson" name="Note lesson" required>
+    <input id="lesson_date" type="text" placeholder="День проведения" name="Note lesson" required>
     <button onClick="createLesson()">Add Lesson</button>
 </form>
 
@@ -63,6 +63,7 @@
                 '    <th>Name lesson</th>\n' +
                 '    <th>Note</th>\n' +
                 '    <th>Date</th>\n' +
+                '    <th> </th>\n' +
                 '    </tr>';
 
             for (var i = 0; i < lessons.length; i++) {

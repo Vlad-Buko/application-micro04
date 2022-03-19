@@ -34,5 +34,4 @@ public class TeamEntity {
     @ManyToOne
     @JoinColumn(name = "group_id")
     private LessonEntity lesson;
-
 }
