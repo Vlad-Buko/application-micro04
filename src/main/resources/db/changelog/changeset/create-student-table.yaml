@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: create-students
+      id: create_students
       author: Vladislav
       changes:
         - createTable:

@@ -27,22 +27,16 @@ public class StudentController {
     @PostMapping("/save")
     public void createStudent(@RequestBody StudentEntity studentEntity,
                               @RequestParam Long teamId) {
-        studentEntity.setScore(0.0);
         log.info("Save student " + studentEntity.getName() + " " + studentEntity.getLastName());
         studentService.createStudent(studentEntity, teamId);
     }
 
     @PutMapping("/update")
-    public ResponseEntity updateStudent(@RequestBody StudentEntity student,
-                                        @RequestParam Long studentId) {
+    public void updateStudent(@RequestBody StudentEntity student,
+                              @RequestParam long studentId) {
         log.info(studentId + "dd");
-        updateTeamScore.updateTeam();
-        try {
-            Double score = student.getScore();
-            return ResponseEntity.ok(studentService.addingScore(studentId, score));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error");
-        }
+        double score = student.getScore();
+        studentService.addingScore(studentId, score);
     }
 
     @GetMapping("/findAll")
@@ -55,6 +49,10 @@ public class StudentController {
         log.info("Student will be removed " + id);
         studentService.deleteStudent(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping
+    public void randomStudent(@PathVariable Long id) {
     }
 
 

@@ -1,5 +1,7 @@
 databaseChangeLog:
   - include:
+      file: db/changelog/changeset/create-lesson-table.yaml
+  - include:
       file: db/changelog/changeset/create-team-table.yaml
   - include:
       file: db/changelog/changeset/create-student-table.yaml

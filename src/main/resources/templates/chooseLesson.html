@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+
+<table id="tableLesson"></table>
+<head>
+
+    <meta charset="UTF-8">
+    <title>ApplicationForStudentAssessment</title>
+
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 60%;
+        }
+        td, th {
+            border: 1px solid #25199a;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #7070cc;
+        }
+
+    </style>
+</head>
+
+<form id="formForCreateLesson">
+    <label For="lesson_name"></label>
+    <input id="lesson_name" type="text" placeholder="Название урока" name="Name lesson" required>
+    <label For="lesson_note"></label>
+    <input id="lesson_note" type="text" placeholder="Заметки, группа" name="Note lesson" required>
+    <label For="lesson_date"></label>
+    <input id="lesson_date" type="text" placeholder="День проведения" name="Note lesson" required>
+    <button onClick="createLesson()">Add Lesson</button>
+</form>
+
+
+
+<script>
+    function createLesson() {
+        let lessonName = document.getElementById("lesson_name").value;
+        let lessonNote = document.getElementById("lesson_note").value;
+        let lessonDate = document.getElementById("lesson_date").value;
+
+        let xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("POST", "http://localhost:8080/lessons/save");
+        xmlhttp.setRequestHeader("Content-Type", "application/json");
+        xmlhttp.send(JSON.stringify({lessonName: lessonName, lessonNote: lessonNote, date: lessonDate}));
+
+        loadStudents();
+    }
+
+    function loadLessons() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            var lessons = JSON.parse(this.responseText);
+            var html = '<tr>\n' +
+                '    <th>Id</th>\n' +
+                '    <th>Name lesson</th>\n' +
+                '    <th>Note</th>\n' +
+                '    <th>Date</th>\n' +
+                '    <th> </th>\n' +
+                '    </tr>';
+
+            for (var i = 0; i < lessons.length; i++) {
+                var lesson = lessons[i];
+                console.log(lesson);
+                html = html + '<tr>' +
+                    '           <td>' + lesson.id + '</td>\n' +
+                    '           <td>' + lesson.lessonName  + '</td>\n' +
+                    '           <td>' + lesson.lessonNote  + '</td>\n' +
+                    '           <td>' + lesson.date  + '</td>\n' +
+                    '           <td><button onclick="deleteLesson('+ lesson.id +')">Delete lesson</button>' +
+                    '           <a href="http://localhost:8080/lessons/manage-students"> ' +
+                    '           <button onclick="chooseLesson('+ lesson.id +')">Choose lesson</button></a></td>';
+            }
+            document.getElementById("tableLesson").innerHTML = html;
+        }
+        xhttp.open("GET", "http://localhost:8080/lessons/findAll", false);
+        xhttp.send();
+    }
+
+    loadLessons();
+
+    function deleteLesson(idLesson) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("DELETE", "http://localhost:8080/lessons/delete/" + idLesson, true);
+        xhttp.send();
+    }
+
+    function chooseLesson(idLesson) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "http://localhost:8080/teams/save/" + idLesson, true);
+        xhttp.send();
+    }
+</script>
+
+</body>
+</html>

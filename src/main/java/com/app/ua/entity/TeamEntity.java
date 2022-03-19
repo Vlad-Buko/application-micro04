@@ -18,7 +18,6 @@ import java.util.List;
 @AllArgsConstructor
 public class TeamEntity {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,12 +26,12 @@ public class TeamEntity {
     private String nameTeam;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "team")
-    private List<StudentEntity> teams;
+    private List<StudentEntity> studentEntities;
 
-    @Column
+    @Column(name = "score_team")
     private double ScoreTeam;
 
-//    @ManyToOne
-//    @JoinColumn(name = "lesson_id")
-//    private LessonEntity lessonsEntity;
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private LessonEntity lesson;
 }

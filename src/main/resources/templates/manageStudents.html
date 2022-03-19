@@ -103,11 +103,10 @@
 
 <form id="formForCreateTeam">
     <label For="team_name"></label>
-    <input id="team_name" type="text" placeholder="Score" name="NameTeam" required>
+    <input id="team_name" type="text" placeholder="Your new name added team" name="NameTeam" required>
     <button onClick="createTeam()">Add team</button>
 </form>
 
-<a href="Giton"> Click</a>
 <script>
     let idTeams;
     let idStudents;
@@ -169,7 +168,7 @@
                     '           <td>' + team.nameTeam + '</td>\n' +
                     '           <td><button onclick="openFormForCreateStudent(' + team.id + ')">ADD</button>' +
                     '           <button onclick="deleteTeam(' + team.id + ')" >Delete Team</button></td>' +
-                    '           <td>Общий балл команды - ' + team.teamScore + '</td></tr>\n';
+                    '           <td>Score students : </td></tr>\n';
                 for (let k = 0; k < students.length; k++) {
                     let student = students[k];
                     console.log(student);
@@ -225,5 +224,6 @@
     }
     loadStudents();
 </script>
+<a href="http://localhost:8080/lessons/main-page"> Back click</a>
 </body>
 </html>

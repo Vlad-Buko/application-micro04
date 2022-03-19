@@ -1,10 +1,10 @@
 databaseChangeLog:
   - changeSet:
-      id: create_team
+      id: create_lesson
       author: Vladislav
       changes:
         - createTable:
-            tableName: team
+            tableName: lesson
             columns:
               - column:
                   name: id
@@ -14,17 +14,19 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: name_team
+                  name: lesson_name
                   type: varchar(255)
                   constraints:
                     nullable: false
               - column:
-                  name: group_id
-                  type: bigint
+                  name: lesson_note
+                  type: varchar(255)
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_hkr_account
-                    references: lesson(id)
               - column:
-                  name: score_team
-                  type: double precision
+                  name: lesson_date
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              
+

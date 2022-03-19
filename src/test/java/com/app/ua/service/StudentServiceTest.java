@@ -1,14 +1,9 @@
 package com.app.ua.service;
 
-import com.app.ua.entity.StudentEntity;
 import com.app.ua.entity.TeamEntity;
-import com.app.ua.model.Student;
-import com.app.ua.model.Team;
 import com.app.ua.repository.StudentRepository;
 import com.app.ua.repository.TeamRepository;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,19 +31,20 @@ class StudentServiceTest {
     @MockBean
     private TeamRepository teamRepository;
 
+
     @Test
     void createTeam() throws Exception {
         TeamEntity teamEntity = new TeamEntity();
-        boolean teamIsCreated = teamService.setTeam(teamEntity);
+        boolean teamIsCreated = teamService.createTeam(teamEntity);
         Assert.assertTrue(teamIsCreated);
     }
 
     @Test
-    @Ignore
-     void createStudent() {
-        StudentEntity studentEntity = new StudentEntity(1l,"vasa","petrov",0.0, null,1l);
-
-        Student st1 = service.createStudent(studentEntity, 1l);
-        Assert.assertEquals(studentEntity,  st1);
+    void deleteTeam() throws Exception {
+        TeamEntity teamEntity = new TeamEntity(1l, "Team1", null, 0.0, null);
+        teamService.createTeam(teamEntity);
+        Long value = teamService.delete(1l);
+        Long expected = 1l;
+        Assert.assertEquals(expected, value);
     }
 }
