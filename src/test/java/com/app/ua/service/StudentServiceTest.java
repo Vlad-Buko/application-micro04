@@ -1,14 +1,9 @@
 package com.app.ua.service;
 
-import com.app.ua.entity.StudentEntity;
 import com.app.ua.entity.TeamEntity;
-import com.app.ua.model.Student;
-import com.app.ua.model.Team;
 import com.app.ua.repository.StudentRepository;
 import com.app.ua.repository.TeamRepository;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +30,6 @@ class StudentServiceTest {
 
     @MockBean
     private TeamRepository teamRepository;
-
 
 
     @Test

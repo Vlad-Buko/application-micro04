@@ -39,7 +39,7 @@ public class TeamController {
         }
     }
 
-    @GetMapping("/chooseTeam")
+    @GetMapping("/chooseTeam/{id}")
     public ResponseEntity getTeam(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(teamService.getOne(id));
