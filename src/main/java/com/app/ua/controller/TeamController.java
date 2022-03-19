@@ -1,5 +1,6 @@
 package com.app.ua.controller;
 
+import com.app.ua.entity.LessonEntity;
 import com.app.ua.entity.TeamEntity;
 import com.app.ua.exception.TeamAlreadyExistException;
 import com.app.ua.exception.TeamNotFoundException;
@@ -25,11 +26,13 @@ public class TeamController {
     private TeamService teamService;
 
     @PostMapping("/save")
-    public ResponseEntity setTeam(@RequestBody TeamEntity team) {
+    public ResponseEntity createTeam(@RequestBody TeamEntity team,
+                                  @PathVariable LessonEntity lesson) {
+        team.setLesson(lesson);
         team.setScoreTeam(0.0);
-        log.info("Okee TEAM ADDED");
+        log.info("Oke TEAM ADDED");
         try {
-            teamService.setTeam(team);
+            teamService.createTeam(team);
             return ResponseEntity.ok("Our team will be good adding! :)");
         } catch (TeamAlreadyExistException e) {
             return ResponseEntity.badRequest().body(e.getMessage());

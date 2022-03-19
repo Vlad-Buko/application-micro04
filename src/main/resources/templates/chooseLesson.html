@@ -33,7 +33,9 @@
     <input id="lesson_name" type="text" placeholder="Your new lesson" name="Name lesson" required>
     <label For="lesson_note"></label>
     <input id="lesson_note" type="text" placeholder="Your new lesson" name="Note lesson" required>
-    <button onClick="createLesson()">Add team</button>
+    <label For="lesson_date"></label>
+    <input id="lesson_date" type="text" placeholder="Your new lesson" name="Note lesson" required>
+    <button onClick="createLesson()">Add Lesson</button>
 </form>
 
 
@@ -42,11 +44,12 @@
     function createLesson() {
         let lessonName = document.getElementById("lesson_name").value;
         let lessonNote = document.getElementById("lesson_note").value;
+        let lessonDate = document.getElementById("lesson_date").value;
 
         let xmlhttp = new XMLHttpRequest();
         xmlhttp.open("POST", "http://localhost:8080/lessons/save");
         xmlhttp.setRequestHeader("Content-Type", "application/json");
-        xmlhttp.send(JSON.stringify({lessonName: lessonName, lastName: lessonNote}));
+        xmlhttp.send(JSON.stringify({lessonName: lessonName, lessonNote: lessonNote, date: lessonDate}));
 
         loadStudents();
     }
@@ -57,7 +60,9 @@
             var lessons = JSON.parse(this.responseText);
             var html = '<tr>\n' +
                 '    <th>Id</th>\n' +
-                '    <th>Date Lesson</th>\n' +
+                '    <th>Name lesson</th>\n' +
+                '    <th>Note</th>\n' +
+                '    <th>Date</th>\n' +
                 '    </tr>';
 
             for (var i = 0; i < lessons.length; i++) {
@@ -66,8 +71,11 @@
                 html = html + '<tr>' +
                     '           <td>' + lesson.id + '</td>\n' +
                     '           <td>' + lesson.lessonName  + '</td>\n' +
+                    '           <td>' + lesson.lessonNote  + '</td>\n' +
+                    '           <td>' + lesson.date  + '</td>\n' +
                     '           <td><button onclick="deleteLesson('+ lesson.id +')">Delete lesson</button>' +
-                    '           <button onclick="chooseLesson(' + lesson.id + ')">Choose lesson</button> </td>';
+                    '           <a href="http://localhost:8080/lessons/manage-students"> ' +
+                    '           <button onclick="chooseLesson('+ lesson.id +')">Choose lesson</button></a></td>';
             }
             document.getElementById("tableLesson").innerHTML = html;
         }
@@ -85,11 +93,10 @@
 
     function chooseLesson(idLesson) {
         var xhttp = new XMLHttpRequest();
-        xhttp.open("GET", "http://localhost:8080/teams/chooseTeam/" + idLesson, true);
+        xhttp.open("POST", "http://localhost:8080/teams/save/" + idLesson, true);
         xhttp.send();
     }
 </script>
 
-<a href="http://localhost:8080/lessons/manage-students"> Click</a>
 </body>
 </html>

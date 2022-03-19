@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<table id="table"></table>
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>ApplicationForStudentAssessment</title>
+
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 60%;
+        }
+
+        td, th {
+            border: 1px solid #73e34f;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #70cc78;
+        }
+    </style>
+    <style>
+        .form-popup {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            right: 15px;
+            border: 3px solid #f1f1f1;
+            z-index: 9;
+        }
+
+        .form-container {
+            max-width: 300px;
+            padding: 10px;
+            background-color: white;
+        }
+
+        .form-container input[type=text] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        .form-container input[type=text] {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        .form-container .btn {
+            background-color: #62f303;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px;
+            opacity: 0.8;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .form-container .cancel {
+            background-color: #ff4498;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="form-popup" id="formForCreateStudent">
+    <form action="#" class="form-container">
+        <h1>Add student</h1>
+        <label for="stud_name"><b>Name </b></label>
+        <input id="stud_name" type="text" placeholder="Имя" name="name" required>
+
+        <label for="stud_lastName"><b>Last name</b></label>
+        <input id="stud_lastName" type="text" placeholder="Фамилия студента" name="lastName" required>
+
+        <button onclick="createStudent()" class="btn">Added</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
+</div>
+
+<div class="form-popup" id="formForAddedScoreStudent">
+    <form action="#" class="form-container">
+        <h1>Score</h1>
+        <label for="score"><b>Add score</b></label>
+        <input id="score" type="text" placeholder="Балл" name="scoreStudent" required>
+
+        <button onclick="updateScoreStudent()" class="btn">Added</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
+</div>
+
+<form id="formForCreateTeam">
+    <label For="team_name"></label>
+    <input id="team_name" type="text" placeholder="Your new name added team" name="NameTeam" required>
+    <button onClick="createTeam()">Add team</button>
+</form>
+
+<script>
+    let idTeams;
+    let idStudents;
+
+    function createStudent() {
+        let studentLastName = document.getElementById("stud_lastName").value;
+        let studentName = document.getElementById("stud_name").value;
+
+        let xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("POST", "http://localhost:8080/students/save?teamId=" + idTeams);
+        xmlhttp.setRequestHeader("Content-Type", "application/json");
+        xmlhttp.send(JSON.stringify({name: studentName, lastName: studentLastName}));
+
+        loadStudents();
+    }
+
+    function createTeam() {
+        let nameTeamJs = document.getElementById("team_name").value;
+
+        let thttp = new XMLHttpRequest();
+        thttp.open("POST", "http://localhost:8080/teams/save", true);
+        thttp.setRequestHeader("Content-Type", "application/json");
+        thttp.send(JSON.stringify({nameTeam: nameTeamJs}));
+
+        loadStudents();
+    }
+
+    function updateScoreStudent() {
+        let studentScore = document.getElementById("score").value;
+
+        let lhttp = new XMLHttpRequest();
+        lhttp.open("PUT", "http://localhost:8080/students/update?studentId=" + idStudents);
+        lhttp.setRequestHeader("Content-Type", "application/json");
+        lhttp.send(JSON.stringify({score : studentScore}));
+
+        loadStudents();
+    }
+
+    function randomChooseQuestion(studentId) {
+        let jhttp = new XMLHttpRequest();
+        jhttp.open("GET", "http://localhost:8080/students/random?studentId" + studentId);
+        jhttp.setRequestHeader("Content-Type", "application/json");
+
+        loadStudents();
+    }
+
+    function loadStudents() {
+        var xhttp = new XMLHttpRequest();
+        var yhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            let teams = JSON.parse(xhttp.responseText);
+            let students = JSON.parse(yhttp.responseText);
+            var html = " ";
+            for (let i = 0; i < teams.length; i++) {
+                let team = teams[i];
+                console.log(team);
+                html = html + '<tr>' +
+                    '           <td></td>\n' +
+                    '           <td>' + team.nameTeam + '</td>\n' +
+                    '           <td><button onclick="openFormForCreateStudent(' + team.id + ')">ADD</button>' +
+                    '           <button onclick="deleteTeam(' + team.id + ')" >Delete Team</button></td>' +
+                    '           <td>Общий балл команды - ' + team.teamScore + '</td></tr>\n';
+                for (let k = 0; k < students.length; k++) {
+                    let student = students[k];
+                    console.log(student);
+                    if (team.id === student.idTeam) {
+                        html = html + '<tr>' +
+                            '           <td><button type="button" onclick="deleteStudent(' + student.id + ')" >Del</button></td>\n' +
+                            '           <td>' + student.name + '</td>\n' +
+                            '           <td>' + student.lastName + '</td>\n' +
+                            '           <td>' + student.score + '\n' +
+                            '           <button onclick="randomChooseQuestion(' + student.id + ')" >Answer</button> \n' +
+                            '           <button onclick="openFormForAddedScore('+ student.id +')">Add ball</button></td>\n';
+                    }
+                }
+            }
+            createTable(html);
+        }
+        yhttp.open("GET", "http://localhost:8080/students/findAll", false);
+        yhttp.send();
+        xhttp.open("GET", "http://localhost:8080/teams/findAll", false);
+        xhttp.send();
+    }
+
+    function deleteStudent(studentId) {
+        let id = studentId;
+        let xhttp = new XMLHttpRequest();
+        xhttp.open("DELETE", "http://localhost:8080/students/delete/" + id, true);
+        xhttp.send();
+    }
+
+    function deleteTeam(teamId) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("DELETE", "http://localhost:8080/teams/delete/" + teamId, true);
+        xhttp.send();
+    }
+
+    function openFormForAddedScore(studentId) {
+        document.getElementById("formForAddedScoreStudent").style.display = "block";
+        idStudents = studentId;
+    }
+
+    function openFormForCreateStudent(teamId) {
+        document.getElementById("formForCreateStudent").style.display = "block";
+        idTeams = teamId;
+    }
+
+    function closeForm() {
+        document.getElementById("formForCreateStudent").style.display = "none";
+        document.getElementById("formForAddedScoreStudent").style.display = "none";
+    }
+
+    function createTable(html) {
+        document.getElementById("table").innerHTML = html;
+    }
+    loadStudents();
+</script>
+<a href="http://localhost:8080/lessons/main-page"> Back click</a>
+</body>
+</html>
