@@ -12,6 +12,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 
+/**
+ * Author Alexandr
+ */
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 class StudentServiceTest {
