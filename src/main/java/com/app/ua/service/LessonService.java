@@ -1,5 +1,6 @@
 package com.app.ua.service;
 
+import com.app.ua.converter.LessonConverter;
 import com.app.ua.entity.LessonEntity;
 import com.app.ua.model.Lesson;
 import com.app.ua.repository.LessonRepository;
@@ -19,7 +20,7 @@ public class LessonService {
     private LessonRepository groupRepository;
 
     public Lesson createLesson(LessonEntity lessonEntity) {
-        return Lesson.toModel(groupRepository.save(lessonEntity));
+        return LessonConverter.convertFromLessonEntity(groupRepository.save(lessonEntity));
     }
 
     public void deleteLesson(Long id) {
@@ -29,7 +30,7 @@ public class LessonService {
     public List<Lesson> findAll() {
         return groupRepository.findAll()
                 .stream()
-                .map(Lesson::toModel)
+                .map(LessonConverter::convertFromLessonEntity)
                 .collect(Collectors.toList());
     }
 }

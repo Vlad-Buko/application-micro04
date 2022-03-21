@@ -1,9 +1,6 @@
 package com.app.ua.model;
 
-import com.app.ua.entity.TeamEntity;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -12,20 +9,9 @@ import java.util.List;
  */
 
 @Data
-@NoArgsConstructor
 public class Team {
     private Long id;
     private String nameTeam;
     private double teamScore;
     private List<Student> students;
-
-    /** toModel in another class */
-
-    public static Team toModel (TeamEntity entity) {
-        Team model = new Team();
-        model.setId(entity.getId());
-        model.setNameTeam(entity.getNameTeam());
-        model.setTeamScore(entity.getScoreTeam());
-        return model;
-    }
 }
