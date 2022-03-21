@@ -1,5 +1,6 @@
 package com.app.ua.service;
 
+import com.app.ua.converter.TeamConverter;
 import com.app.ua.entity.TeamEntity;
 import com.app.ua.exception.TeamAlreadyExistException;
 import com.app.ua.exception.TeamNotFoundException;
@@ -10,7 +11,6 @@ import com.app.ua.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,11 +22,6 @@ import java.util.stream.Collectors;
 public class TeamService {
     @Autowired
     private TeamRepository teamRepos;
-    @Autowired
-    private StudentRepository studentRepository;
-    @Autowired
-    private UpdateTeamScore updateTeamScore;
-    Student student;
 
     public boolean createTeam(TeamEntity team) throws TeamAlreadyExistException {
         if (teamRepos.findByNameTeam(team.getNameTeam()) != null) {
@@ -41,13 +36,13 @@ public class TeamService {
         if (team == null) {
             throw new TeamNotFoundException("Команда не найдена!");
         }
-        return Team.toModel(team);
+        return TeamConverter.convertFromTeamEntityInModelTeam(team);
     }
 
     public List<Team> findAll() {
         return teamRepos.findAll()
                 .stream()
-                .map(Team::toModel)
+                .map(TeamConverter::convertFromTeamEntityInModelTeam)
                 .collect(Collectors.toList());
     }
 

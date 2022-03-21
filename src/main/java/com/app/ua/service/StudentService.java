@@ -1,5 +1,6 @@
 package com.app.ua.service;
 
+import com.app.ua.converter.StudentConverter;
 import com.app.ua.entity.StudentEntity;
 import com.app.ua.entity.TeamEntity;
 import com.app.ua.model.Student;
@@ -32,7 +33,7 @@ public class StudentService {
         TeamEntity team = teamRepos.findById(teamId).get();
         studentEntity.setScore(0.0);
         studentEntity.setTeam(team);
-        return Student.toModel(studentRepos.save(studentEntity));
+        return StudentConverter.convertFromStudentEntity(studentRepos.save(studentEntity));
     }
 
     public StudentEntity addingScore(long id, double score) {
@@ -55,7 +56,7 @@ public class StudentService {
     public List<Student> findAll() {
         return studentRepos.findAll()
                 .stream()
-                .map(Student::toModel)
+                .map(StudentConverter::convertFromStudentEntity)
                 .collect(Collectors.toList());
     }
 }
