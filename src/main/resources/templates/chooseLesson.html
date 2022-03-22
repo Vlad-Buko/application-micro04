@@ -25,7 +25,9 @@
             background-color: #7070cc;
         }
 
+
     </style>
+
 </head>
 
 <form id="formForCreateLesson">
@@ -38,13 +40,12 @@
     <button onClick="createLesson()">Add Lesson</button>
 </form>
 
-
-
 <script>
     function createLesson() {
         let lessonName = document.getElementById("lesson_name").value;
         let lessonNote = document.getElementById("lesson_note").value;
         let lessonDate = document.getElementById("lesson_date").value;
+
 
         let xmlhttp = new XMLHttpRequest();
         xmlhttp.open("POST", "http://localhost:8080/lessons/save");
