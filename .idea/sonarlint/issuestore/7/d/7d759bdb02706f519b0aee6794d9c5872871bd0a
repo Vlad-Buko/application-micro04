@@ -1,15 +1,0 @@
-
-Z
-java:S1854)"8Remove this useless assignment to local variable "team".(Œ‚’üÿÿÿÿ8œÆæãù/
-Y
-java:S1854(">Remove this useless assignment to local variable "teamEntity".(ô¥¯»ıÿÿÿÿ
-J
-java:S1481("/Remove this unused "teamEntity" local variable.(ô¥¯»ıÿÿÿÿ
-K
-java:S1481)")Remove this unused "team" local variable.(Œ‚’üÿÿÿÿ8Ææãù/
-T
-java:S1128"2Remove this unused import 'java.util.Collections'.(¢³ïÓşÿÿÿÿ8‰À©æù/
-Q
-java:S1128"/Remove this unused import 'java.util.Optional'.(¨˜ëİüÿÿÿÿ8‰À©æù/
-k
-java:S3655 "PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(¹Ùğ’şÿÿÿÿ
