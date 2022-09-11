@@ -1,7 +1,10 @@
 Application for Andersen
 
 Java 11
-
+Maven 
+Spring Boot
+Hibernate
+Liquibase
 
 Для запуска приложения нужно:
 1. Подключить базу данных PostgreSQL
