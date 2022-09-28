@@ -38,3 +38,6 @@
 3. Прописать в файлике application.properties name и password
 4. Запустить приложение.
 5. Перейти по адресу http://localhost:8080/lessons/main-page
+  <img width="953" alt="Screenshot 2022-09-28 at 23 08 10" src="https://user-images.githubusercontent.com/72036166/192878934-f8a6bbe6-a002-4f46-95e9-862960f00ed1.png">
+
+   
