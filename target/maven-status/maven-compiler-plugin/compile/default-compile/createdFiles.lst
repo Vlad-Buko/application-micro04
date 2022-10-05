@@ -1,6 +1,5 @@
 com/app/ua/repository/StudentRepository.class
 com/app/ua/entity/LessonEntity.class
-com/app/ua/config/SwaggerConfiguration.class
 com/app/ua/model/Student.class
 com/app/ua/repository/TeamRepository.class
 com/app/ua/service/TeamService.class
