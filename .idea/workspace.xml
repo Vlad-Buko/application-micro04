@@ -10,49 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="93db5347-4ff5-4faa-a5b0-ba7218cf0fad" name="Changes" comment="Update app for Heroku cloud">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/app/ua/service/StudentServiceTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/app/ua/service/TeamServiceTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/config/SwaggerConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/config/SwaggerConfiguration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/controller/LessonController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/controller/LessonController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/controller/StudentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/controller/StudentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/controller/TeamController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/controller/TeamController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/controller/ViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/controller/ViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/converter/LessonConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/converter/LessonConverter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/converter/StudentConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/converter/StudentConverter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/converter/TeamConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/converter/TeamConverter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/entity/GroupEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/entity/GroupEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/entity/LessonEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/entity/LessonEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/entity/StudentEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/entity/StudentEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/entity/TeamEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/entity/TeamEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/exception/TeamAlreadyExistException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/exception/TeamAlreadyExistException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/exception/TeamNotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/exception/TeamNotFoundException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/model/Group.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/model/Group.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/model/Lesson.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/model/Lesson.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/model/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/model/Student.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/model/Team.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/model/Team.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/repository/LessonRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/repository/LessonRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/repository/StudentRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/repository/StudentRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/repository/TeamRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/repository/TeamRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/service/LessonService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/service/LessonService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/service/StudentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/service/StudentService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/service/TeamService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/service/TeamService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/ua/service/UpdateTeamScore.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/ua/service/UpdateTeamScore.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/app/ua/service/StudentServiceTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/app/ua/service/TeamServiceTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,6 +45,7 @@
     </option>
   </component>
   <component name="ProjectId" id="2FgUwKHRPZqObTz1jWLCwsq63JV" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -181,7 +141,7 @@
       <workItem from="1664921509461" duration="428000" />
       <workItem from="1664921951206" duration="798000" />
       <workItem from="1664943553662" duration="772000" />
-      <workItem from="1664990571156" duration="621000" />
+      <workItem from="1664990571156" duration="1249000" />
     </task>
     <task id="LOCAL-00001" summary="Update app for Heroku cloud">
       <created>1664915839593</created>
