@@ -48,7 +48,7 @@
 
 
         let xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("POST", "http://localhost:8080/lessons/save");
+        xmlhttp.open("POST", "https://app-ander.herokuapp.com/lessons/save");
         xmlhttp.setRequestHeader("Content-Type", "application/json");
         xmlhttp.send(JSON.stringify({lessonName: lessonName, lessonNote: lessonNote, date: lessonDate}));
 
@@ -81,7 +81,7 @@
             }
             document.getElementById("tableLesson").innerHTML = html;
         }
-        xhttp.open("GET", "http://localhost:8080/lessons/findAll", false);
+        xhttp.open("GET", "https://app-ander.herokuapp.com/lessons/findAll", false);
         xhttp.send();
     }
 
@@ -89,13 +89,13 @@
 
     function deleteLesson(idLesson) {
         var xhttp = new XMLHttpRequest();
-        xhttp.open("DELETE", "http://localhost:8080/lessons/delete/" + idLesson, true);
+        xhttp.open("DELETE", "https://app-ander.herokuapp.com/lessons/delete/" + idLesson, true);
         xhttp.send();
     }
 
     function chooseLesson(idLesson) {
         var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "http://localhost:8080/teams/save/" + idLesson, true);
+        xhttp.open("POST", "https://app-ander.herokuapp.com/teams/save/" + idLesson, true);
         xhttp.send();
     }
 </script>

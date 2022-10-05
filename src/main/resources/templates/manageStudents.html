@@ -116,7 +116,7 @@
         let studentName = document.getElementById("stud_name").value;
 
         let xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("POST", "http://localhost:8080/students/save?teamId=" + idTeams);
+        xmlhttp.open("POST", "https://app-ander.herokuapp.com/students/save?teamId=" + idTeams);
         xmlhttp.setRequestHeader("Content-Type", "application/json");
         xmlhttp.send(JSON.stringify({name: studentName, lastName: studentLastName}));
 
@@ -127,7 +127,7 @@
         let nameTeamJs = document.getElementById("team_name").value;
 
         let thttp = new XMLHttpRequest();
-        thttp.open("POST", "http://localhost:8080/teams/save", true);
+        thttp.open("POST", "https://app-ander.herokuapp.com/teams/save", true);
         thttp.setRequestHeader("Content-Type", "application/json");
         thttp.send(JSON.stringify({nameTeam: nameTeamJs}));
 
@@ -138,7 +138,7 @@
         let studentScore = document.getElementById("score").value;
 
         let lhttp = new XMLHttpRequest();
-        lhttp.open("PUT", "http://localhost:8080/students/update?studentId=" + idStudents);
+        lhttp.open("PUT", "https://app-ander.herokuapp.com/students/update?studentId=" + idStudents);
         lhttp.setRequestHeader("Content-Type", "application/json");
         lhttp.send(JSON.stringify({score : studentScore}));
 
@@ -147,7 +147,7 @@
 
     function randomChooseQuestion(studentId) {
         let jhttp = new XMLHttpRequest();
-        jhttp.open("GET", "http://localhost:8080/students/random?studentId" + studentId);
+        jhttp.open("GET", "https://app-ander.herokuapp.com/students/random?studentId" + studentId);
         jhttp.setRequestHeader("Content-Type", "application/json");
 
         loadStudents();
@@ -185,22 +185,22 @@
             }
             createTable(html);
         }
-        yhttp.open("GET", "http://localhost:8080/students/findAll", false);
+        yhttp.open("GET", "https://app-ander.herokuapp.com/students/findAll", false);
         yhttp.send();
-        xhttp.open("GET", "http://localhost:8080/teams/findAll", false);
+        xhttp.open("GET", "https://app-ander.herokuapp.com/teams/findAll", false);
         xhttp.send();
     }
 
     function deleteStudent(studentId) {
         let id = studentId;
         let xhttp = new XMLHttpRequest();
-        xhttp.open("DELETE", "http://localhost:8080/students/delete/" + id, true);
+        xhttp.open("DELETE", "https://app-ander.herokuapp.com/students/delete/" + id, true);
         xhttp.send();
     }
 
     function deleteTeam(teamId) {
         var xhttp = new XMLHttpRequest();
-        xhttp.open("DELETE", "http://localhost:8080/teams/delete/" + teamId, true);
+        xhttp.open("DELETE", "https://app-ander.herokuapp.com/teams/delete/" + teamId, true);
         xhttp.send();
     }
 
@@ -224,6 +224,6 @@
     }
     loadStudents();
 </script>
-<a href="http://localhost:8080/lessons/main-page"> Back click</a>
+<a href="https://app-ander.herokuapp.com/lessons/main-page"> Back click</a>
 </body>
 </html>
