@@ -6,9 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="application-for-andersen" />
-        <module name="Application_For_Andersen" />
+        <module name="app-start-hero" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="app-start-hero" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

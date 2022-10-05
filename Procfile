@@ -1,1 +1,1 @@
- java -jar target/Application-For-Andersen-1.0.jar
+web: java -jar target/app-start-hero-1.0.jar
