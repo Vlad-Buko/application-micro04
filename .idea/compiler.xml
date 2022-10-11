@@ -6,16 +6,24 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="app-start-hero" />
+        <module name="gettingActualDataFromServerCbr" />
+        <module name="currencyRateClient" />
+        <module name="application-from-andersen" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="app-start-hero" target="8" />
+      <module name="app-start-hero" target="11" />
+      <module name="application-from-andersen" target="8" />
+      <module name="cbrRate" target="8" />
+      <module name="currencyRateClient" target="1.8" />
+      <module name="gettingActualDataFromServerCbr" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="app-start-hero" options="-parameters" />
+      <module name="application-from-andersen" options="-parameters" />
+      <module name="currencyRateClient" options="-parameters" />
+      <module name="gettingActualDataFromServerCbr" options="-parameters" />
     </option>
   </component>
 </project>

@@ -3,7 +3,9 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/application-from-andersen/pom.xml" />
+        <option value="$PROJECT_DIR$/currencyRateClient/pom.xml" />
+        <option value="$PROJECT_DIR$/gettingActualDataFromServerCbr/pom.xml" />
       </list>
     </option>
   </component>

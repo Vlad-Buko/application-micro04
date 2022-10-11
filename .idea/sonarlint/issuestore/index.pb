@@ -1,6 +1,4 @@
 
-d
-4src/main/java/com/app/ua/service/StudentService.java,7/d/7d759bdb02706f519b0aee6794d9c5872871bd0a
 b
 2.idea/libraries/Maven__org_yaml_snakeyaml_1_30.xml,3/c/3c9053362206afff74805f76190a4db80d948973
 t
@@ -79,8 +77,6 @@ z
 J.idea/libraries/Maven__jakarta_validation_jakarta_validation_api_2_0_2.xml,d/5/d547cb1fb5bdfb2adb7662382f960595e698dbd1
 ‚
 R.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_jdbc_2_7_3.xml,0/d/0d0787057c7e87a66ddbaf080e897063783037b3
-‡
-W.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_thymeleaf_2_7_3.xml,f/7/f76fd3a34e3a611843043ebf2e9f43b0cab32877
 †
 V.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_jpa_2_7_3.xml,b/3/b39d977b46a1eda3e260b82e3fe5926b07e6b3f6
 ‚
@@ -135,11 +131,3 @@ m
 =.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_11.xml,5/e/5ed1c00bded3571f661e3c3911c0cbe44c07eeb9
 €
 P.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_13_3.xml,3/7/37fbf643191327343b696e9337716176d3eaf43a
-B
-app-start-hero.iml,3/4/340453012607e18b3aa8836e110837f870c57ea0
-a
-1src/main/java/com/app/ua/service/TeamService.java,6/a/6a0fb2b5eee6ef9d2f322f658a2179868df661f3
-c
-3src/main/java/com/app/ua/service/LessonService.java,b/c/bc2255ffa670c92cd1f80c2eaae6b7f8219c59ef
-j
-:src/main/java/com/app/ua/controller/StudentController.java,7/9/79c74e429fda821c57ce5429326cb7a3864bb446
