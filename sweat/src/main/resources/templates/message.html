@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="col-lg-3" th:object="${messages}">
+    <select class="form-control" id="testOrder" name="testOrder">
+        <option value="">Select Test Order</option>
+        <option th:each="message1 : ${messages}"
+                th:value="${message1.text}"
+                th:text="${message1.text}+' : '+${message1.tag}"></option>
+        </option>
+    </select>
+</div>
+
+<h1>Добавление текста</h1>
+<form  method="post" th:object="${#message}" th:action="@{/greeting/added-model}" >
+
+    <label for="name" > Name </label>
+    <input id="name" type="text" th:field="${message.text}"/>
+
+    <label for="login"> Login </label>
+    <input id="login" type="text" th:field="${message.tag}"/>
+
+    <button type="submit">Save</button>
+
+</body>
+</html>
