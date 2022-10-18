@@ -1,6 +1,0 @@
-spring.datasource.url=${SPRING_DATASOURCE_URL:jdbc:postgresql://ec2-54-228-30-162.eu-west-1.compute.amazonaws.com:5432/d9ocoltjnqa0c3}
-spring.datasource.username=${SPRING_DATASOURCE_USERNAME:________}
-spring.datasource.password=${SPRING_DATASOURCE_PASSWORD:_____}
-spring.liquibase.enabled=true
-server.port=${PORT:8080}
-
