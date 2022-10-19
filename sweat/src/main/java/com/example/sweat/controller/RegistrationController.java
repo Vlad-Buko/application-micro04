@@ -1,5 +1,6 @@
 package com.example.sweat.controller;
 
+import com.example.sweat.domain.Role;
 import com.example.sweat.domain.User;
 import com.example.sweat.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,16 +27,18 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String addUser(User user, Model model) {
-        User userFromDb = userRepo.findByUsername(user);
+        User userFromDb = userRepo.findByUsername(user.getUsername());
 
         if (userFromDb != null) {
-            model.addAttribute("message", "User exist!");
-            return  "registration";
+            model.addAttribute("message", "User exists!");
+            return "registration";
         }
 
         user.setActive(true);
-        user.setRoles(Collections.singleton());
+        user.setRoles(Collections.singleton(Role.USER));
+        userRepo.save(user);
 
         return "redirect:/login";
     }
 }
+
